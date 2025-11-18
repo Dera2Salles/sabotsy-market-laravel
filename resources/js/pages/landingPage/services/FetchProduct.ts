@@ -3,6 +3,7 @@ import { usePage } from '@inertiajs/react';
 
 export const useFetchProductService = (): {
     data: ProductEntity[];
+    path: string;
     meta: {
         current_page: number;
         last_page: number;

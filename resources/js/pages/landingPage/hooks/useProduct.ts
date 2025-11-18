@@ -41,9 +41,8 @@ export const useProduct = () => {
     };
 
     const fetchMoreProducts = async () => {
-        if (isLoading || !hasMore) return;
+        if (!hasMore) return;
 
-        setIsLoading(true);
         const nextPage = currentPage + 1;
 
         try {
@@ -62,9 +61,6 @@ export const useProduct = () => {
                         setProductList((prev) => [...prev, ...newProducts]);
                         setCurrentPage(newMeta.current_page);
                         setHasMore(newMeta.current_page < newMeta.last_page);
-                        setIsLoading(false);
-                    },
-                    onError: () => {
                         setIsLoading(false);
                     },
                 },
