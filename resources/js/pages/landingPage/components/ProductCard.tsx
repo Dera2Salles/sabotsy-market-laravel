@@ -16,10 +16,9 @@ export const ProductCardList = () => {
     const bloc = useProductContext();
     const productList: ProductEntity[] | undefined = bloc?.productListFiltered;
 
-    const observerRef = useIntersectionObserver(bloc.fetchProduct, {
+    const observerRef = useIntersectionObserver(bloc.fetchMoreProducts, {
         threshold: 0.1,
         rootMargin: '100px',
-        enabled: !bloc.hasReachedMax,
     });
 
     return (

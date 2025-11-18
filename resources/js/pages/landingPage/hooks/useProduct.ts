@@ -5,6 +5,7 @@ import type { OrderEntity } from '@/features/order/Order';
 import type { ProductEntity } from '@/features/product/ProductEntity';
 
 import { filter } from '@/features/product/FilterAndSortProducts';
+import { router } from '@inertiajs/react';
 import { addProductToTheOrderService } from '../services/AddProductToTheOrderService';
 import { confirmOrderService } from '../services/ConfirmOrder';
 import { useFetchProductService } from '../services/FetchProduct';
@@ -12,15 +13,19 @@ import { removeProductToTheOrderService } from '../services/RemoveProductToTheOr
 
 export const useProduct = () => {
     const [index, setIndex] = useState<number>(0);
-
-    const productsFromServer = useFetchProductService(); 
+    const { data: productsFromServer, path, meta } = useFetchProductService();
 
     const [productList, setProductList] =
         useState<ProductEntity[]>(productsFromServer);
     const [productOnOrder, setProductOnOrder] = useState<OrderEntity>();
     const [filterCategory, setFilterCategory] = useState<string>('All');
-    const [page, setPage] = useState<number>(1);
-    const [hasReachedMax, setHasReachedMax] = useState<boolean>(true);
+    const [currentPage, setCurrentPage] = useState<number>(
+        meta.current_page || 1,
+    );
+    const [hasMore, setHasMore] = useState<boolean>(
+        meta.current_page < meta.last_page,
+    );
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const [searchTerm, setSearch] = useState<string>('');
     const [debouncedSearchTerm, setDebouncedSearchTerm] = useState<string>('');
@@ -30,19 +35,43 @@ export const useProduct = () => {
         searchTerm: debouncedSearchTerm,
         category: filterCategory,
     });
-    const limit = 5;
 
     const confirmOrder = async () => {
         await confirmOrderService();
     };
 
-    const FetchProduct = () => {
-        const product = useFetchProductService({ page, limit });
-        if (product) {
-            setProductList(product);
-            setPage((page) => page + 1);
-        } else {
-            setHasReachedMax(true);
+    const fetchMoreProducts = async () => {
+        if (isLoading || !hasMore) return;
+
+        setIsLoading(true);
+        const nextPage = currentPage + 1;
+
+        try {
+            router.get(
+                path,
+                { page: nextPage },
+                {
+                    preserveState: true,
+                    preserveScroll: true,
+                    only: ['products'],
+                    onSuccess: (page) => {
+                        const newProducts = page.props.products
+                            .data as ProductEntity[];
+                        const newMeta = page.props.products.meta;
+
+                        setProductList((prev) => [...prev, ...newProducts]);
+                        setCurrentPage(newMeta.current_page);
+                        setHasMore(newMeta.current_page < newMeta.last_page);
+                        setIsLoading(false);
+                    },
+                    onError: () => {
+                        setIsLoading(false);
+                    },
+                },
+            );
+        } catch (error) {
+            console.error(error);
+            setIsLoading(false);
         }
     };
 
@@ -70,7 +99,7 @@ export const useProduct = () => {
 
     return {
         productList,
-        fetchProduct: FetchProduct,
+        fetchMoreProducts,
         addProducToTheOrder,
         productOnOrder,
         productListFiltered,
@@ -78,7 +107,8 @@ export const useProduct = () => {
         setSearch,
         filterCategory,
         removeProducToTheOrder,
-        hasReachedMax,
+        hasMore,
+        isLoading,
         confirmOrder,
         index,
         setIndex,

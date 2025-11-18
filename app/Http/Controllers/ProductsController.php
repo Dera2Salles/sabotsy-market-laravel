@@ -14,7 +14,7 @@ class ProductsController extends Controller
     {
         // $limit = $request->input('limit', 10);
 
-        $products = Product::paginate(5);
+        $products = Product::paginate(2);
 
         return Inertia::render('LandingPage', [
             'products' => $products,
