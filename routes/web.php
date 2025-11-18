@@ -1,13 +1,11 @@
 <?php
 
+use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/', function () {
-    return Inertia::render('LandingPage');
-});
+Route::get('/', [ProductsController::class, 'index']);
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
@@ -19,4 +17,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

@@ -1,18 +1,24 @@
 <?php
-
 namespace App\Http\Controllers;
 
-use App\Models\products;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class ProductsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        // $limit = $request->input('limit', 10);
+
+        $products = Product::paginate(5);
+
+        return Inertia::render('LandingPage', [
+            'products' => $products,
+        ]);
     }
 
     /**
