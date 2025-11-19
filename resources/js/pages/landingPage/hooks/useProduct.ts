@@ -8,7 +8,10 @@ import { filter } from '@/features/product/FilterAndSortProducts';
 import { router } from '@inertiajs/react';
 import { addProductToTheOrderService } from '../services/AddProductToTheOrderService';
 import { confirmOrderService } from '../services/ConfirmOrder';
-import { useFetchProductService } from '../services/FetchProduct';
+import {
+    InertiaReturnType,
+    useFetchProductService,
+} from '../services/FetchProduct';
 import { removeProductToTheOrderService } from '../services/RemoveProductToTheOrderService';
 
 export const useProduct = () => {
@@ -41,7 +44,7 @@ export const useProduct = () => {
     };
 
     const fetchMoreProducts = async () => {
-        if (!hasMore) return;
+        if (!hasMore || productList.length >= meta.total) return;
 
         const nextPage = currentPage + 1;
 
@@ -54,11 +57,13 @@ export const useProduct = () => {
                     preserveScroll: true,
                     only: ['products'],
                     onSuccess: (page) => {
-                        const newProducts = page.props.products
-                            .data as ProductEntity[];
+                        const newProducts = page.props
+                            .products as InertiaReturnType<ProductEntity[]>;
                         const newMeta = page.props.products.meta;
-
-                        setProductList((prev) => [...prev, ...newProducts]);
+                        setProductList((prev) => [
+                            ...prev,
+                            ...newProducts.data,
+                        ]);
                         setCurrentPage(newMeta.current_page);
                         setHasMore(newMeta.current_page < newMeta.last_page);
                         setIsLoading(false);
