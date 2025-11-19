@@ -44,11 +44,17 @@ export const useProduct = () => {
     };
 
     const fetchMoreProducts = async () => {
-        if (!hasMore || productList.length >= meta.total) return;
+        if (
+            isLoading ||
+            !hasMore ||
+            productList.length >= (meta?.total ?? productList.length)
+        )
+            return;
 
         const nextPage = currentPage + 1;
 
         try {
+            setIsLoading(true);
             router.get(
                 path,
                 { page: nextPage },
@@ -59,7 +65,11 @@ export const useProduct = () => {
                     onSuccess: (page) => {
                         const newProducts = page.props
                             .products as InertiaReturnType<ProductEntity[]>;
-                        const newMeta = page.props.products.meta;
+                        const newMeta =
+                            (page.props.products as InertiaReturnType<
+                                ProductEntity[]
+                            >)?.meta ??
+                            meta;
                         setProductList((prev) => [
                             ...prev,
                             ...newProducts.data,
@@ -72,6 +82,7 @@ export const useProduct = () => {
             );
         } catch (error) {
             console.error(error);
+            setHasMore(false);
             setIsLoading(false);
         }
     };
