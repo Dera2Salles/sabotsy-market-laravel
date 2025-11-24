@@ -11,7 +11,7 @@ import {
 } from "@tanstack/react-table";
 
 import { useDashboardContext } from "../context/useDashboardContext";
-import { useIntersectionObserver } from "@/presentation/hooks/useIntersectionObserver";
+import { useIntersectionObserver } from "@/pages/landingPage/hooks/useIntersectionObserver";
 
 import { columns } from "../components/DataTableColumn";
 
