@@ -21,6 +21,18 @@ class ProductsController extends Controller
         ]);
     }
 
+    public function dash(Request $request)
+    {
+        // $limit = $request->input('limit', 10);
+
+        $products = Product::paginate(5);
+
+        return Inertia::render('Dashboard', [
+            'products' => $products,
+        ]);
+
+    }
+
     /**
      * Show the form for creating a new resource.
      */
