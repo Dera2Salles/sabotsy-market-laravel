@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('category');
             $table->integer('price');
             $table->integer('unit_stock');
+            $table->string('image')->nullable();
+
             $table->timestamps();
         });
     }

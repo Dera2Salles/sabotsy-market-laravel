@@ -5,6 +5,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ProductsController::class, 'index']);
+Route::post('/product', [ProductsController::class, 'store']);
+
 
 Route::get('/dashboard', [ProductsController::class, 'dash'])->middleware(['auth', 'verified'])->name('dashboard');
 

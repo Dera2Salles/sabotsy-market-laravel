@@ -21,7 +21,7 @@ export class MemoryStorage implements ProductServerSource {
             name: 'Tomate',
             category: 'legume',
             description: 'Fraîches et bonnes pour la santé',
-            fileName: tomate,
+            image: tomate,
         },
         {
             id: '2',
@@ -31,7 +31,7 @@ export class MemoryStorage implements ProductServerSource {
             name: 'Pomme',
             category: 'fruit',
             description: 'Pommes croquantes de saison',
-            fileName: apple,
+            image: apple,
         },
         {
             id: '3',
@@ -41,7 +41,7 @@ export class MemoryStorage implements ProductServerSource {
             name: 'Ognion',
             category: 'legume',
             description: 'Ognion biologiques riches en vitamines',
-            fileName: ognion,
+            image: ognion,
         },
         {
             id: '4',
@@ -51,7 +51,7 @@ export class MemoryStorage implements ProductServerSource {
             name: 'Banana',
             category: 'fruit',
             description: 'Banana crémeux et mûrs à point',
-            fileName: banana,
+            image: banana,
         },
         {
             id: '5',
@@ -61,7 +61,7 @@ export class MemoryStorage implements ProductServerSource {
             name: 'Chou Fleur',
             category: 'legume',
             description: 'Chou fleur à point',
-            fileName: chouFleur,
+            image: chouFleur,
         },
     ]; // Fake Data
 

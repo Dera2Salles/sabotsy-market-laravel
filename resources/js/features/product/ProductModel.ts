@@ -39,7 +39,7 @@ export class ProductModel {
             unitOnCart: this.product.unitOnCart,
             name: this.product.name,
             category: this.product.category,
-            fileName: this.product.fileName,
+            image: this.product.image,
             description: this.product.description,
         };
     }

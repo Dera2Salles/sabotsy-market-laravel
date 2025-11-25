@@ -2,6 +2,7 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { MainDashboard } from '@/pages/ProducerDashBoard/components/MainDashboard';
 import { DashboardProvider } from '@/pages/ProducerDashBoard/context/useDashboardProvider';
 import { Head } from '@inertiajs/react';
+import { CardWithForm } from '../pages/ProducerDashBoard/components/CardInput';
 
 export default function Dashboard() {
     return (
@@ -20,6 +21,7 @@ export default function Dashboard() {
                         <div className="p-6 text-gray-900">
                             <DashboardProvider>
                                 <MainDashboard />
+                                <CardWithForm/>
                             </DashboardProvider>
                         </div>
                     </div>

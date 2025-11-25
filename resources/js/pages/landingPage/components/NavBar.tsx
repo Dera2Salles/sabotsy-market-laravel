@@ -6,6 +6,8 @@ import { Moon, Sun } from 'lucide-react';
 import { useIntersection } from '../hooks/useIntersection';
 import { Description } from './Description';
 
+import { Link } from '@inertiajs/react';
+
 export const NavBar = () => {
     const { ref, isVisible } = useIntersection();
     const { toggleTheme, isDark } = useThemeContext();
@@ -37,13 +39,16 @@ export const NavBar = () => {
                                     </span>
                                 </p>
                             </div>
-                            <Button
-                                size="icon"
-                                variant="outline"
-                                className="size-10 cursor-pointer rounded-full bg-white text-green-700 transition-all duration-300 hover:bg-gray-100 dark:bg-white"
-                            >
-                                <MdPerson2 className="text-2xl" />
-                            </Button>
+                            <Link href={route('login')}>
+                                <Button
+                                    size="icon"
+                                    variant="outline"
+                                    className="size-10 cursor-pointer rounded-full bg-white text-green-700 transition-all duration-300 hover:bg-gray-100 dark:bg-white"
+                                >
+                                    <MdPerson2 className="text-2xl" />
+                                </Button>
+                            </Link>
+
                             <button
                                 className="cursor-pointer px-5 text-white"
                                 onClick={toggleTheme}

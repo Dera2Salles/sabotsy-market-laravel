@@ -28,7 +28,7 @@ export const CardProduct: React.FC<CardProductProps> = ({ product }) => {
             <CardHeader className="p-0">
                 <div className="relative h-48 w-full">
                     <img
-                        src={product.fileName ? product.fileName : defaut}
+                        src={product.image ? product.image : defaut}
                         alt={product.name}
                         className="h-full w-full object-cover"
                     />

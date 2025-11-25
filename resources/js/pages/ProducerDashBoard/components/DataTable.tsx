@@ -30,7 +30,7 @@ export const ProductDataTable = () => {
     useScrollLock(isEditModalVisible);
 
     return (
-        <div className="w-full border p-4 transition-all duration-500 dark:bg-zinc-900">
+        <div className="w-full border p-4 transition-all duration-500 ">
             <div className="flex w-full items-center justify-between px-4 pt-6">
                 <section className="flex flex-col">
                     <p className="text-2xl font-bold">Product list</p>

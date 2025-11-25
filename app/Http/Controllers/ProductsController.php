@@ -10,22 +10,30 @@ class ProductsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index()
     {
-        // $limit = $request->input('limit', 10);
+        $products = Product::paginate(5);
 
-        $products = Product::paginate(2);
+        $products->getCollection()->transform(function ($product) {
+            $product->image = '/storage/' . $product->image;
 
+            return $product;
+        });
         return Inertia::render('LandingPage', [
             'products' => $products,
         ]);
     }
 
-    public function dash(Request $request)
+    public function dash()
     {
-        // $limit = $request->input('limit', 10);
 
         $products = Product::paginate(5);
+
+        $products->getCollection()->transform(function ($product) {
+            $product->image = '/storage/' . $product->image;
+
+            return $product;
+        });
 
         return Inertia::render('Dashboard', [
             'products' => $products,
@@ -46,7 +54,24 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name'        => 'required',
+            'description' => 'required',
+            'category'    => 'required',
+            'unit_stock'  => 'required',
+            'price'       => 'required',
+
+        ]);
+        $filePath = $request->file('image')->store('uploads', 'public');
+
+        Product::create([
+            'name'        => $request->name,
+            'description' => $request->description,
+            'category'    => $request->category,
+            'unit_stock'  => $request->unit_stock,
+            'image'       => $filePath,
+            'price'       => $request->price,
+        ]);
     }
 
     /**

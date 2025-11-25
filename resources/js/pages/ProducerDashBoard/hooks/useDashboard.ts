@@ -143,7 +143,7 @@ export const useDashboard = () => {
                 name: productName as string,
                 category: productCategory as string,
                 description: productDescription as string,
-                fileName: selectedFile?.name,
+                image: selectedFile?.name,
             },
         ];
 
