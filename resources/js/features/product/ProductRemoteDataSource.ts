@@ -49,7 +49,9 @@ export class ProductRemoteDataSource implements ProductServerSource {
     }
   }
 
-  async getOneByName(data: addProductDto): Promise<ProductEntity> {}
+  async getOneByName(_data: addProductDto): Promise<ProductEntity> {
+    throw new Error('Method not implemented.');
+  }
 
   async add(product: ProductEntity[]): Promise<InsertReturnType[]> {
     try {

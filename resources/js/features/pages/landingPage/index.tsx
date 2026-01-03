@@ -1,3 +1,4 @@
+import { Toaster } from '@/components/ui/sonner';
 import { ThemeProvider } from '@/theme/useThemeProvider';
 import { LandingPageLayout } from './components/LandingPageLayout';
 import { ProductProvider } from './context/productProvider';
@@ -10,6 +11,7 @@ export const LandingPage = () => {
                 <ProductProvider>
                     <Modalprovider>
                         <LandingPageLayout />
+                        <Toaster position="top-center" richColors />
                     </Modalprovider>
                 </ProductProvider>
             </ThemeProvider>

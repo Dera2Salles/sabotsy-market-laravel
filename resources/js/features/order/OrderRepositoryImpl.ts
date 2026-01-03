@@ -1,10 +1,10 @@
 import type { RESULT } from '@/core/Types';
-import type { OrderServerSource } from './OrderServerSource';
-import { OrderModel } from './OrderModel';
 import { failure, success } from '@/core/Types/Result';
 import type { ProductEntity } from '@/features/product/ProductEntity';
-import type { OrderRepository } from './OrderRepository';
 import type { OrderEntity } from './Order';
+import { OrderModel } from './OrderModel';
+import type { OrderRepository } from './OrderRepository';
+import type { OrderServerSource } from './OrderServerSource';
 
 export class OrderRepositoryImpl implements OrderRepository {
   private order: OrderModel;
@@ -60,6 +60,7 @@ export class OrderRepositoryImpl implements OrderRepository {
     try {
       const order = this.order.getData();
       await this.service.confirm(order);
+      this.order.clearOrder();
       return success(undefined);
     } catch (error) {
       console.error(error);

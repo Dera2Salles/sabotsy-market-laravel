@@ -124,4 +124,8 @@ export class OrderModel {
     if (!isOrderCreated) return failure(new Error('Order not initialized'));
     return success(undefined);
   };
+
+  clearOrder(): void {
+    this.createOrder();
+  }
 }
