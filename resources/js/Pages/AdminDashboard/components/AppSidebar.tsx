@@ -1,24 +1,24 @@
 'use client';
 
 import {
-    BarChartIcon,
-    ClipboardListIcon,
-    DatabaseIcon,
-    HelpCircleIcon,
-    SettingsIcon
+  BarChartIcon,
+  ClipboardListIcon,
+  DatabaseIcon,
+  HelpCircleIcon,
+  SettingsIcon
 } from 'lucide-react';
 import * as React from 'react';
 
 import { NavMain } from '@/components/nav-main';
 import { NavUser } from '@/components/nav-user';
 import {
-    Sidebar,
-    SidebarContent,
-    SidebarFooter,
-    SidebarHeader,
-    SidebarMenu,
-    SidebarMenuButton,
-    SidebarMenuItem,
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarHeader,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
 } from '@/components/ui/sidebar';
 
 const data = {
@@ -60,7 +60,7 @@ const data = {
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar collapsible="offcanvas" {...props} className="border-r border-gray-100 dark:border-zinc-800">
+    <Sidebar collapsible="offcanvas" {...props}>
       <SidebarHeader className="pb-4 pt-4">
         <SidebarMenu>
           <SidebarMenuItem>

@@ -8,7 +8,7 @@ export const AdminDashboardPage = () => {
     return (
         <DashboardProvider>
             <SidebarProvider>
-                <AppSidebar variant="inset" />
+                <AppSidebar />
                 <SidebarInset className="overflow-y-auto">
                     <SiteHeader />
                     <MainDashboard />

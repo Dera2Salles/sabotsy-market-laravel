@@ -65,7 +65,7 @@ export function ProducerSidebar({ ...props }: React.ComponentProps<typeof Sideba
   };
 
   return (
-    <Sidebar collapsible="offcanvas" {...props} className="border-r border-gray-100 dark:border-zinc-800">
+    <Sidebar collapsible="offcanvas" {...props}>
       <SidebarHeader className="pb-4 pt-4">
         <SidebarMenu>
           <SidebarMenuItem>

@@ -1,7 +1,9 @@
+import { DataTable } from '@/components/common/DataTable';
 import { Button } from '@/components/ui/button';
 import { Link } from '@inertiajs/react';
 import { DollarSign, Package, Plus, ShoppingCart, TrendingUp } from 'lucide-react';
 import { ProducerStatCard } from './ProducerStatCard';
+import { columns } from './ProductColumn';
 
 interface ProducerMainDashboardProps {
     stats: {
@@ -70,17 +72,13 @@ export const ProducerMainDashboard = ({ stats, products }: ProducerMainDashboard
         />
       </div>
 
-      {/* Products Table Section - Placeholder for now, later enhance with DataTable */}
+      {/* Recent Products Section */}
       <div className="grid gap-8 lg:grid-cols-1">
         <div className="animate-scale-in bg-white/50 dark:bg-zinc-900/50 rounded-2xl p-6 shadow-sm backdrop-blur-sm border border-gray-100 dark:border-zinc-800">
           <div className="flex items-center justify-between mb-6">
                <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200">Recent Products</h3>
           </div>
-          <div className="p-12 text-center text-gray-500 bg-gray-50/50 dark:bg-zinc-900/50 rounded-xl border border-dashed border-gray-200 dark:border-zinc-800">
-               <Package className="h-10 w-10 mx-auto mb-3 text-gray-400 opacity-50" />
-               <p>Product list visualization coming soon</p>
-               <p className="text-sm mt-1">Total count: {products?.data?.length || 0}</p>
-          </div>
+          <DataTable columns={columns} data={products} />
         </div>
       </div>
     </main>

@@ -14,7 +14,7 @@ export const ProducerDashboardPage = ({ stats, products }: ProducerDashboardProp
     return (
         <ProducerDashboardProvider>
             <SidebarProvider>
-                <ProducerSidebar variant="inset" />
+                <ProducerSidebar />
                 <SidebarInset className="overflow-y-auto">
                     <ProducerHeader />
                     <ProducerMainDashboard stats={stats} products={products} />
