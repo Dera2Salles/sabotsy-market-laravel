@@ -12,8 +12,8 @@ import { MdCancel, MdPayment, MdShoppingCart } from 'react-icons/md';
 import { CartRow } from './CartRow';
 
 import type { ProductEntity } from '@/features/product/ProductEntity';
-import { useProductContext } from '@/pages/landingPage/context/useProductContext';
 import { useModalContext } from '../context/useModalContext';
+import { useProductContext } from '../context/useProductContext';
 
 export const ProductListOnCart = () => {
     const { closeProductListOnCart } = useModalContext();

@@ -2,13 +2,39 @@
 
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\ProducerDashboardController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ProductsController::class, 'index']);
 Route::post('/product', [ProductsController::class, 'store']);
 
+// Dashboard route with role-based redirection
+Route::get('/dashboard', function () {
+    $user = auth()->user();
+    
+    if ($user->isAdmin()) {
+        return redirect()->route('admin.dashboard');
+    } elseif ($user->isProducer()) {
+        return redirect()->route('producer.dashboard');
+    }
+    
+    return redirect('/');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/dashboard', [ProductsController::class, 'dash'])->middleware(['auth', 'verified'])->name('dashboard');
+// Admin routes
+Route::middleware(['auth', 'verified', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+    Route::get('/users', [AdminDashboardController::class, 'users'])->name('users');
+    Route::get('/producers', [AdminDashboardController::class, 'producers'])->name('producers');
+});
+
+// Producer routes
+Route::middleware(['auth', 'verified', 'producer'])->prefix('producer')->name('producer.')->group(function () {
+    Route::get('/dashboard', [ProducerDashboardController::class, 'index'])->name('dashboard');
+    Route::get('/products', [ProducerDashboardController::class, 'products'])->name('products');
+    Route::get('/orders', [ProducerDashboardController::class, 'orders'])->name('orders');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

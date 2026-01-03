@@ -20,6 +20,15 @@ class Product extends Model
         'price',
         'unit_stock',
         'image',
-        'category'
+        'category',
+        'user_id',
     ];
+
+    /**
+     * Get the user that owns the product.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

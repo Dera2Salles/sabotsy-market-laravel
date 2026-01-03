@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
-import { useProductContext } from '@/pages/landingPage/context/useProductContext';
 import { motion } from 'framer-motion';
 import { MdShoppingCart } from 'react-icons/md';
+import { useProductContext } from '../context/useProductContext';
 
 import { useModalContext } from '../context/useModalContext';
 

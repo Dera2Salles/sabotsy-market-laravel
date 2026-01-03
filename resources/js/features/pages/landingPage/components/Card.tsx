@@ -5,7 +5,7 @@ import { MdShoppingCart } from 'react-icons/md';
 import { QuantityControl } from './QuantityControl';
 
 import type { ProductEntity } from '@/features/product/ProductEntity';
-import { useProductContext } from '@/pages/landingPage/context/useProductContext';
+import { useProductContext } from '../context/useProductContext';
 
 import defaut from '@/assets/defaut.jpg';
 
