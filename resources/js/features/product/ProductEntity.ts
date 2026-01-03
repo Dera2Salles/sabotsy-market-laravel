@@ -1,11 +1,18 @@
+export interface Category {
+    id: number;
+    name: string;
+    slug: string;
+}
+
 export interface ProductEntity {
-    id?: string;
-    producerId?: string;
-    price: number;
+    id?: string | number;
+    user_id?: string | number;
+    unit_price: number;
     unit_stock: number;
     unitOnCart?: number;
-    name: string;
-    category: string;
+    product_name: string;
+    category?: Category;
+    category_id: number;
     image?: string;
-    description: string;
+    product_description: string;
 }

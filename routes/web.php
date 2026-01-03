@@ -33,6 +33,11 @@ Route::middleware(['auth', 'verified', 'admin'])->prefix('admin')->name('admin.'
 Route::middleware(['auth', 'verified', 'producer'])->prefix('producer')->name('producer.')->group(function () {
     Route::get('/dashboard', [ProducerDashboardController::class, 'index'])->name('dashboard');
     Route::get('/products', [ProducerDashboardController::class, 'products'])->name('products');
+    Route::get('/products/create', [ProducerDashboardController::class, 'create'])->name('products.create');
+    Route::post('/products', [ProducerDashboardController::class, 'store'])->name('products.store');
+    Route::get('/products/{product}/edit', [ProducerDashboardController::class, 'edit'])->name('products.edit');
+    Route::put('/products/{product}', [ProducerDashboardController::class, 'update'])->name('products.update');
+    Route::delete('/products/{product}', [ProducerDashboardController::class, 'destroy'])->name('products.destroy');
     Route::get('/orders', [ProducerDashboardController::class, 'orders'])->name('orders');
 });
 

@@ -15,12 +15,12 @@ class Product extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'description',
-        'price',
+        'product_name',
+        'product_description',
+        'unit_price',
         'unit_stock',
         'image',
-        'category',
+        'category_id',
         'user_id',
     ];
 
@@ -30,5 +30,13 @@ class Product extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Get the category of the product.
+     */
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 }

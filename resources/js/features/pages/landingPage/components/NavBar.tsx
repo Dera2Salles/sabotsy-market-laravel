@@ -43,7 +43,7 @@ export const NavBar = () => {
                                 </p>
                             </div>
 
-                            {usePage().props.auth.user ? (
+                            {(usePage().props as any).auth?.user ? (
                                 <Link href={route('dashboard')}>
                                     <Button
                                         variant="outline"

@@ -29,21 +29,21 @@ export const CardProduct: React.FC<CardProductProps> = ({ product }) => {
                 <div className="relative h-48 w-full">
                     <img
                         src={product.image ? product.image : defaut}
-                        alt={product.name}
+                        alt={product.product_name}
                         className="h-full w-full object-cover"
                     />
                 </div>
             </CardHeader>
             <div className="bg-white p-4 transition-all duration-500 dark:bg-zinc-800">
                 <CardTitle className="mb-2 text-2xl font-bold text-green-800 transition-all duration-500 dark:text-amber-100">
-                    {product.name}
+                    {product.product_name}
                 </CardTitle>
                 <p className="mb-4 text-sm text-gray-600 transition-all duration-500 dark:text-gray-300">
-                    {product.description}
+                    {product.product_description}
                 </p>
                 <div className="mb-4 flex items-center justify-between">
                     <p className="text-lg font-semibold text-green-600">
-                        {product.price || '0'}.00 MGA
+                        {product.unit_price || '0'}.00 MGA
                     </p>
                     <p className="text-sm text-gray-500 transition-all duration-500 dark:text-gray-300">
                         Stock: {product.unit_stock}

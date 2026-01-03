@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button';
+import { Link } from '@inertiajs/react';
 import { DollarSign, Package, Plus, ShoppingCart, TrendingUp } from 'lucide-react';
 import { ProducerStatCard } from './ProducerStatCard';
 
@@ -25,10 +26,12 @@ export const ProducerMainDashboard = ({ stats, products }: ProducerMainDashboard
             Manage your products, track orders, and grow your business.
           </p>
         </div>
-        <Button className="bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 text-white shadow-lg shadow-green-500/20 hover:shadow-xl hover:shadow-green-500/30 transition-all duration-300 rounded-xl h-11 px-6">
-          <Plus className="mr-2 h-4 w-4" />
-          Add Product
-        </Button>
+        <Link href={route('producer.products.create')}>
+             <Button className="bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 text-white shadow-lg shadow-green-500/20 hover:shadow-xl hover:shadow-green-500/30 transition-all duration-300 rounded-xl h-11 px-6">
+                <Plus className="mr-2 h-4 w-4" />
+                Add Product
+             </Button>
+        </Link>
       </div>
 
       {/* Stats Grid */}

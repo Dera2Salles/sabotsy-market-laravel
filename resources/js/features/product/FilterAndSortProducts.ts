@@ -1,5 +1,5 @@
-import { leveinshtein_distance } from "@/core/utils/leveinshtein";
 import type { FilterAndSortProductsParams } from "@/core/FilterAndSortProduct";
+import { leveinshtein_distance } from "@/core/utils/leveinshtein";
 import type { ProductEntity } from "./ProductEntity";
 
 export const filter = ({
@@ -12,13 +12,13 @@ export const filter = ({
       const categoryMatch =
         !category ||
         category.toLowerCase() === "all" ||
-        item.category.toLowerCase() === category.toLowerCase();
+        item.category?.name.toLowerCase() === category.toLowerCase();
       return categoryMatch;
     })
     .map((item) => {
       const diff = leveinshtein_distance(
-        item.name.toLowerCase(),
-        searchTerm.toLowerCase()
+        (item.product_name || "").toLowerCase(),
+        (searchTerm || "").toLowerCase()
       );
       return { ...item, diff };
     })
@@ -28,10 +28,12 @@ export const filter = ({
       return item.diff <= threshold;
     })
     .sort((item, anotherItem) => {
-      if (item.diff !== anotherItem.diff) {
-        return item.diff - anotherItem.diff;
+      const diffA = (item as any).diff || 0;
+      const diffB = (anotherItem as any).diff || 0;
+      if (diffA !== diffB) {
+        return diffA - diffB;
       }
-      return item.name.localeCompare(anotherItem.name);
+      return (item.product_name || "").localeCompare(anotherItem.product_name || "");
     });
 
   return productListFiltered;

@@ -1,3 +1,4 @@
+import { router } from '@inertiajs/react';
 import {
     BadgeCheck,
     Bell,
@@ -104,7 +105,7 @@ export function NavUser({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={() => router.post(route('logout'))} className="cursor-pointer">
               <LogOut className="mr-2 h-4 w-4" />
               Log out
             </DropdownMenuItem>

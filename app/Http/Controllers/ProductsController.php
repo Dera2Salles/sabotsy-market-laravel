@@ -12,13 +12,13 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products = Product::paginate(5);
+        $products = Product::with('category')->paginate(5);
 
         $products->getCollection()->transform(function ($product) {
             $product->image = '/storage/' . $product->image;
-
             return $product;
         });
+
         return Inertia::render('LandingPage', [
             'products' => $products,
         ]);
@@ -26,19 +26,16 @@ class ProductsController extends Controller
 
     public function dash()
     {
-
-        $products = Product::paginate(5);
+        $products = Product::with('category')->paginate(5);
 
         $products->getCollection()->transform(function ($product) {
             $product->image = '/storage/' . $product->image;
-
             return $product;
         });
 
         return Inertia::render('Dashboard', [
             'products' => $products,
         ]);
-
     }
 
     /**
@@ -55,22 +52,24 @@ class ProductsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'        => 'required',
-            'description' => 'required',
-            'category'    => 'required',
-            'unit_stock'  => 'required',
-            'price'       => 'required',
-
+            'product_name'        => 'required|string|max:255',
+            'product_description' => 'required|string',
+            'category_id'         => 'required|exists:categories,id',
+            'unit_stock'          => 'required|integer|min:0',
+            'unit_price'          => 'required|numeric|min:0',
+            'image'               => 'required|image|max:2048',
         ]);
-        $filePath = $request->file('image')->store('uploads', 'public');
+
+        $filePath = $request->file('image')->store('products', 'public');
 
         Product::create([
-            'name'        => $request->name,
-            'description' => $request->description,
-            'category'    => $request->category,
-            'unit_stock'  => $request->unit_stock,
-            'image'       => $filePath,
-            'price'       => $request->price,
+            'product_name'        => $request->product_name,
+            'product_description' => $request->product_description,
+            'category_id'         => $request->category_id,
+            'unit_stock'          => $request->unit_stock,
+            'image'               => $filePath,
+            'unit_price'          => $request->unit_price,
+            'user_id'             => auth()->id(),
         ]);
     }
 
