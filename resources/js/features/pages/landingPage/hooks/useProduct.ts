@@ -29,6 +29,8 @@ export const useProduct = () => {
         meta.current_page < meta.last_page,
     );
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [isPaymentModalOpen, setIsPaymentModalOpen] = useState<boolean>(false);
+    const [isProcessingPayment, setIsProcessingPayment] = useState<boolean>(false);
 
     const [searchTerm, setSearch] = useState<string>('');
     const [debouncedSearchTerm, setDebouncedSearchTerm] = useState<string>('');
@@ -46,7 +48,16 @@ export const useProduct = () => {
             router.get(route("login"));
             return;
         }
+        setIsPaymentModalOpen(true);
+    };
+
+    const processPayment = async () => {
+        setIsProcessingPayment(true);
+        // Simulate network delay for payment
+        await new Promise(resolve => setTimeout(resolve, 2000));
         await confirmOrderService();
+        setIsProcessingPayment(false);
+        setIsPaymentModalOpen(false);
     };
 
     const fetchMoreProducts = async () => {
@@ -130,5 +141,9 @@ export const useProduct = () => {
         confirmOrder,
         index,
         setIndex,
+        isPaymentModalOpen,
+        setIsPaymentModalOpen,
+        isProcessingPayment,
+        processPayment,
     };
 };

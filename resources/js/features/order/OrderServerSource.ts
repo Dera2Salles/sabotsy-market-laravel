@@ -1,4 +1,3 @@
-import { ApiSource } from '@/core/constant';
 import { type AxiosInstance } from 'axios';
 import type { OrderEntity } from './Order';
 
@@ -11,7 +10,7 @@ export class OrderRemoteDataSourceImpl implements OrderServerSource {
 
   async confirm(order: OrderEntity): Promise<void> {
     try {
-      const response = await this.api.post(`${ApiSource.local}/order`, order);
+      const response = await this.api.post(`/order`, order);
       if (response.status != 200) throw new Error();
     } catch (error) {
       console.error(error);

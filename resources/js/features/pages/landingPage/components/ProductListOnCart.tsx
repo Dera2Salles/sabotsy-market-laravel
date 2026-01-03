@@ -15,6 +15,8 @@ import type { ProductEntity } from '@/features/product/ProductEntity';
 import { useModalContext } from '../context/useModalContext';
 import { useProductContext } from '../context/useProductContext';
 
+import { PaymentModal } from './PaymentModal';
+
 export const ProductListOnCart = () => {
     const { closeProductListOnCart } = useModalContext();
     const bloc = useProductContext();
@@ -24,14 +26,22 @@ export const ProductListOnCart = () => {
         bloc.productOnOrder?.OrderItemsTotalPrice?.toFixed(2) || '0.00';
 
     return (
-        <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm"
-            onClick={closeProductListOnCart}
-        >
+        <>
+            <PaymentModal
+                isOpen={bloc.isPaymentModalOpen}
+                onClose={() => bloc.setIsPaymentModalOpen(false)}
+                onConfirm={bloc.processPayment}
+                isProcessing={bloc.isProcessingPayment}
+                totalAmount={totalPrice}
+            />
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm"
+                onClick={closeProductListOnCart}
+            >
             <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -111,5 +121,6 @@ export const ProductListOnCart = () => {
                 </Card>
             </motion.div>
         </motion.div>
+        </>
     );
 };
