@@ -1,6 +1,6 @@
-import type { ProductEntity } from '../product/ProductEntity';
 import type { RESULT } from '../../core/Types';
-import { type Result, success, failure } from '../../core/Types/Result';
+import { failure, type Result, success } from '../../core/Types/Result';
+import type { ProductEntity } from '../product/ProductEntity';
 import type { OrderEntity } from './Order';
 
 export class OrderModel {
@@ -32,7 +32,7 @@ export class OrderModel {
       return failure(new Error('Order not initialized'));
     }
     this.order.OrderItemsTotalPrice = this.order.OrderItems.reduce(
-      (total, item) => total + item.price * (item.unitOnCart as number),
+      (total, item) => total + item.unit_price * (item.unitOnCart as number),
       0,
     );
     return success(undefined);
@@ -46,7 +46,7 @@ export class OrderModel {
     }
 
     const isProductOnCart = this.order.OrderItems.findIndex(
-      (item) => item.name == productToAdd.name,
+      (item) => item.product_name == productToAdd.product_name,
     );
 
     if (isProductOnCart !== -1) {

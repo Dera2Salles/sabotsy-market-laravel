@@ -28,7 +28,26 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'OrderItems' => 'required|array',
+            'OrderItems.*.id' => 'required|exists:products,id',
+            'OrderItems.*.unitOnCart' => 'required|integer|min:1',
+            'OrderItems.*.unit_price' => 'required|numeric',
+        ]);
+
+        $user = auth()->user();
+
+        foreach ($validated['OrderItems'] as $item) {
+            \App\Models\Order::create([
+                'user_id' => $user->id,
+                'product_id' => $item['id'],
+                'quantity' => $item['unitOnCart'],
+                'total_price' => $item['unitOnCart'] * $item['unit_price'],
+                'status' => 'pending',
+            ]);
+        }
+
+        return response()->json(['status' => 'success']);
     }
 
     /**

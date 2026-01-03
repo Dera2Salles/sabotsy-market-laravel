@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ProductsController::class, 'index']);
 Route::post('/product', [ProductsController::class, 'store']);
+Route::post('/order', [\App\Http\Controllers\OrderController::class, 'store'])->middleware('auth');
 
 // Dashboard route with role-based redirection
 Route::get('/dashboard', function () {

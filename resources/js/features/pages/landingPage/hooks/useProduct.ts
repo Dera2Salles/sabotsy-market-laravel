@@ -5,7 +5,7 @@ import type { OrderEntity } from '@/features/order/Order';
 import type { ProductEntity } from '@/features/product/ProductEntity';
 
 import { filter } from '@/features/product/FilterAndSortProducts';
-import { router } from '@inertiajs/react';
+import { router, usePage } from '@inertiajs/react';
 import { addProductToTheOrderService } from '../services/AddProductToTheOrderService';
 import { confirmOrderService } from '../services/ConfirmOrder';
 import {
@@ -39,7 +39,13 @@ export const useProduct = () => {
         category: filterCategory,
     });
 
+    const { auth } = usePage().props as any;
+
     const confirmOrder = async () => {
+        if (!auth.user) {
+            router.get(route("login"));
+            return;
+        }
         await confirmOrderService();
     };
 
