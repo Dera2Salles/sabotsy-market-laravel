@@ -52,14 +52,14 @@ export function DataTable<TData, TValue>({
 
     return (
         <div className="space-y-4">
-            <div className="rounded-md border">
+            <div className="rounded-md border-0">
                 <Table>
-                    <TableHeader>
+                    <TableHeader className="bg-gray-50/50 dark:bg-zinc-900/50">
                         {table.getHeaderGroups().map((headerGroup) => (
-                            <TableRow key={headerGroup.id}>
+                            <TableRow key={headerGroup.id} className="hover:bg-transparent border-b border-gray-100 dark:border-zinc-800">
                                 {headerGroup.headers.map((header) => {
                                     return (
-                                        <TableHead key={header.id}>
+                                        <TableHead key={header.id} className="text-xs uppercase tracking-wider font-semibold text-gray-500 dark:text-gray-400 h-10">
                                             {header.isPlaceholder
                                                 ? null
                                                 : flexRender(
@@ -81,9 +81,10 @@ export function DataTable<TData, TValue>({
                                     data-state={
                                         row.getIsSelected() && 'selected'
                                     }
+                                    className="border-b border-gray-50 dark:border-zinc-800/50 hover:bg-gray-50/50 dark:hover:bg-zinc-800/50 transition-colors"
                                 >
                                     {row.getVisibleCells().map((cell) => (
-                                        <TableCell key={cell.id}>
+                                        <TableCell key={cell.id} className="py-3 text-sm">
                                             {flexRender(
                                                 cell.column.columnDef.cell,
                                                 cell.getContext(),
@@ -99,7 +100,7 @@ export function DataTable<TData, TValue>({
                                     className="h-24 text-center"
                                 >
                                     <div className="flex flex-col items-center justify-center gap-2 text-muted-foreground">
-                                        <Inbox className="h-8 w-8" />
+                                        <Inbox className="h-8 w-8 text-gray-300" />
                                         <p>No results found.</p>
                                     </div>
                                 </TableCell>

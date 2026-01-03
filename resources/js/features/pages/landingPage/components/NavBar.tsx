@@ -6,7 +6,10 @@ import { Moon, Sun } from 'lucide-react';
 import { useIntersection } from '../hooks/useIntersection';
 import { Description } from './Description';
 
-import { Link } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
+
+// Add declaration for Ziggy's route helper
+declare function route(name?: string, params?: any, absolute?: boolean): string;
 
 export const NavBar = () => {
     const { ref, isVisible } = useIntersection();
@@ -39,15 +42,27 @@ export const NavBar = () => {
                                     </span>
                                 </p>
                             </div>
-                            <Link href={route('login')}>
-                                <Button
-                                    size="icon"
-                                    variant="outline"
-                                    className="size-10 cursor-pointer rounded-full bg-white text-green-700 transition-all duration-300 hover:bg-gray-100 dark:bg-white"
-                                >
-                                    <MdPerson2 className="text-2xl" />
-                                </Button>
-                            </Link>
+
+                            {usePage().props.auth.user ? (
+                                <Link href={route('dashboard')}>
+                                    <Button
+                                        variant="outline"
+                                        className="h-10 rounded-full border-0 bg-white/10 hover:bg-white/20 text-white backdrop-blur-sm transition-all duration-300"
+                                    >
+                                         Dashboard
+                                    </Button>
+                                </Link>
+                            ) : (
+                                <Link href={route('login')}>
+                                    <Button
+                                        size="icon"
+                                        variant="outline"
+                                        className="size-10 cursor-pointer rounded-full bg-white text-green-700 transition-all duration-300 hover:bg-gray-100 dark:bg-white"
+                                    >
+                                        <MdPerson2 className="text-2xl" />
+                                    </Button>
+                                </Link>
+                            )}
 
                             <button
                                 className="cursor-pointer px-5 text-white"

@@ -2,6 +2,7 @@ import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
 import { AppSidebar } from './components/AppSidebar';
 import { MainDashboard } from './components/MainDashboard';
 import { SiteHeader } from './components/SiteHeader';
+import { DashboardProvider } from './context/useDashboardProvider';
 
 // Define interface for props
 interface AdminDashboardProps {
@@ -12,13 +13,15 @@ interface AdminDashboardProps {
 
 export const AdminDashboardIndex = ({ stats, recentUsers, products }: AdminDashboardProps) => {
     return (
-        <SidebarProvider>
-            <AppSidebar variant="inset" />
-            <SidebarInset className="overflow-y-auto">
-                <SiteHeader />
-                <MainDashboard stats={stats} products={products} recentUsers={recentUsers} />
-            </SidebarInset>
-        </SidebarProvider>
+        <DashboardProvider>
+            <SidebarProvider>
+                <AppSidebar variant="inset" />
+                <SidebarInset className="overflow-y-auto">
+                    <SiteHeader />
+                    <MainDashboard stats={stats} products={products} recentUsers={recentUsers} />
+                </SidebarInset>
+            </SidebarProvider>
+        </DashboardProvider>
     );
 };
 

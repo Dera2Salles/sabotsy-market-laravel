@@ -60,19 +60,22 @@ const data = {
 
 export function ProducerSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar collapsible="offcanvas" {...props}>
-      <SidebarHeader>
+    <Sidebar collapsible="offcanvas" {...props} className="border-r border-gray-100 dark:border-zinc-800">
+      <SidebarHeader className="pb-4 pt-4">
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton
               asChild
-              className="data-[slot=sidebar-menu-button]:!p-1.5"
+              className="data-[slot=sidebar-menu-button]:!p-2 hover:bg-emerald-50 dark:hover:bg-emerald-900/10 transition-colors rounded-xl group-data-[collapsible=icon]:!p-2"
             >
               <a href="#">
-                <div className="flex flex-row justify-between gap-2">
-                  <div className="flex font-semibold text-green-700 text-xl justify-center items-center">
-                    <p className="text-yellow-500 font-semibold">Sabotsy</p>{' '}
-                    Market
+                <div className="flex flex-row items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-green-600 to-teal-600 text-white shadow-lg shadow-green-500/20">
+                    <span className="font-bold text-lg">S</span>
+                  </div>
+                  <div className="flex flex-col gap-0.5 leading-none">
+                     <span className="font-bold text-lg text-emerald-950 dark:text-emerald-50">Sabotsy</span>
+                     <span className="text-xs font-medium text-amber-500 tracking-wider uppercase">Producer</span>
                   </div>
                 </div>
               </a>
@@ -80,10 +83,10 @@ export function ProducerSidebar({ ...props }: React.ComponentProps<typeof Sideba
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
-      <SidebarContent>
+      <SidebarContent className="px-2">
         <NavMain items={data.navMain} />
       </SidebarContent>
-      <SidebarFooter>
+      <SidebarFooter className="p-4 border-t border-gray-50 dark:border-zinc-800/50">
         <NavUser user={data.user} />
       </SidebarFooter>
     </Sidebar>

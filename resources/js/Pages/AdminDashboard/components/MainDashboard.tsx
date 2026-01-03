@@ -19,34 +19,34 @@ interface MainDashboardProps {
 
 export const MainDashboard = ({ stats, products, recentUsers }: MainDashboardProps) => {
   return (
-    <main className="flex flex-1 flex-col gap-6 p-4 md:gap-8 md:p-8 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 min-h-screen">
+    <main className="flex flex-1 flex-col gap-8 p-6 md:p-8 bg-gray-50/50 dark:bg-zinc-900/50 min-h-screen">
       {/* Welcome Section */}
-      <div className="animate-slide-up">
-        <h1 className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent mb-2">
-          Admin Dashboard
+      <div className="animate-slide-up space-y-1">
+        <h1 className="text-4xl font-bold tracking-tight bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
+          Dashboard Overview
         </h1>
-        <p className="text-gray-600 dark:text-gray-400">
-          Welcome back! Here's what's happening with your platform today.
+        <p className="text-gray-500 dark:text-gray-400 text-lg">
+          Welcome back! Here's your daily store performance summary.
         </p>
       </div>
 
       {/* Stats Grid */}
-      <div className="grid gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-4">
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         <StatCard
           title="Total Products"
           value={stats.totalProducts}
           icon={<Package className="h-5 w-5" />}
-          description="Total products available"
+          description="Active items in store"
           trend="up"
-          gradient="purple"
+          variant="emerald"
         />
         <StatCard
           title="Total Orders"
           value={stats.totalOrders}
           icon={<ShoppingCart className="h-5 w-5" />}
-          description="Total orders placed"
+          description="Orders this month"
           trend="up"
-          gradient="green"
+          variant="amber"
         />
         <StatCard
           title="Total Users"
@@ -54,24 +54,30 @@ export const MainDashboard = ({ stats, products, recentUsers }: MainDashboardPro
           icon={<Users className="h-5 w-5" />}
           description={`${stats.totalCustomers} Customers, ${stats.totalProducers} Producers`}
           trend="up"
-          gradient="orange"
+          variant="teal"
         />
         <StatCard
           title="Total Revenue"
-          value="$45,231" // Placeholder for now or pass from backend if available
+          value="$45,231" // Placeholder
           icon={<TrendingUp className="h-5 w-5" />}
-          description="Calculated revenue"
+          description="+12% from last month"
           trend="up"
-          gradient="blue"
+          variant="blue"
         />
       </div>
 
       {/* Charts and Table Section */}
-      <div className="grid gap-6 md:gap-8 lg:grid-cols-2 xl:grid-cols-3">
-        <div className="xl:col-span-2 animate-scale-in">
-          <DataTable columns={columns} data={products} />
+      <div className="grid gap-8 lg:grid-cols-2 xl:grid-cols-3">
+        <div className="xl:col-span-2 space-y-8 animate-scale-in">
+          <div className="rounded-2xl border bg-white/50 dark:bg-zinc-900/50 p-6 shadow-sm backdrop-blur-sm">
+             <div className="mb-6 flex items-center justify-between">
+                <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200">Recent Products</h3>
+             </div>
+             <DataTable columns={columns} data={products} />
+          </div>
         </div>
-        <div className="grid auto-rows-max items-start gap-6 md:gap-8 animate-scale-in" style={{ animationDelay: '0.1s' }}>
+        
+        <div className="space-y-8 animate-scale-in" style={{ animationDelay: '0.1s' }}>
           <BarChartGraph />
           <PieChartGraph />
         </div>
