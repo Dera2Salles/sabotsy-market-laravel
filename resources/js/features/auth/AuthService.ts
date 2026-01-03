@@ -1,7 +1,7 @@
+import type { UserData } from '@/features/auth/AuthRepository';
 import type { UserEntity } from '@/features/auth/UserEntity';
 import type { AxiosInstance } from 'axios';
-import type { UserData } from '@/features/auth/AuthRepository';
-import { ApiSource } from '@/core/constant';
+
 import type { LoginDto } from './LoginDto';
 
 export abstract class AuthService {
@@ -16,7 +16,7 @@ export class AuthServiceImpl implements AuthService {
   async logIn(loginData: LoginDto): Promise<string> {
     try {
       const response = await this.service.post(
-        `${ApiSource.local}/auth/login`,
+        `/auth/login`,
         loginData,
       );
 
@@ -30,7 +30,7 @@ export class AuthServiceImpl implements AuthService {
   async getData(page: number, limit: number): Promise<UserData> {
     try {
       const response = await this.service.get(
-        `${ApiSource.local}/auth?page=${page}&limit=${limit}`,
+        `/auth?page=${page}&limit=${limit}`,
       );
 
       if (response.status != 200) throw new Error();

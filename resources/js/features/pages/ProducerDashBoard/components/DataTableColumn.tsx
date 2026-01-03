@@ -26,7 +26,7 @@ export const columns: ColumnDef<ProductEntity>[] = [
             <img
                 src={
                     row.getValue('filename')
-                        ? `http://localhost:5000/product/stream/${row.getValue('filename')}`
+                        ? `/product/stream/${row.getValue('filename')}`
                         : defaut
                 }
                 alt={row.getValue('name')}

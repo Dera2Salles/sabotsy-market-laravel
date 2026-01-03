@@ -1,4 +1,4 @@
-import { ApiSource } from '@/core/constant';
+
 import type { ProductEntity } from '@/features/product/ProductEntity';
 import { type AxiosInstance } from 'axios';
 
@@ -27,7 +27,7 @@ export class ProductRemoteDataSource implements ProductServerSource {
   async getAll(page: number, limit: number): Promise<ProductEntity[]> {
     try {
       const response = await this.api.get(
-        `${ApiSource.local}/product?page=${page}&limit=${limit}`,
+        `/product?page=${page}&limit=${limit}`,
       );
       const product: ProductEntity[] = response.data.data;
       return product;
@@ -39,7 +39,7 @@ export class ProductRemoteDataSource implements ProductServerSource {
   async delete(productId: string): Promise<void> {
     try {
       const response = await this.api.delete(
-        `${ApiSource.local}/product/${productId}`,
+        `/product/${productId}`,
       );
 
       if (response.status != 200) throw new Error();
@@ -54,7 +54,7 @@ export class ProductRemoteDataSource implements ProductServerSource {
   async add(product: ProductEntity[]): Promise<InsertReturnType[]> {
     try {
       const response = await this.api.post(
-        `${ApiSource.local}/product`,
+        `/product`,
         product,
       );
 
@@ -69,7 +69,7 @@ export class ProductRemoteDataSource implements ProductServerSource {
   async sendFiles(file: FormData): Promise<void> {
     try {
       const response = await this.api.post(
-        `${ApiSource.local}/product/file`,
+        `/product/file`,
         file,
         {
           headers: {
