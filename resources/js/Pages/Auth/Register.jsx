@@ -4,7 +4,8 @@ import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import GuestLayout from '@/Layouts/GuestLayout';
 import { Head, Link, useForm } from '@inertiajs/react';
-import { ShoppingBasket } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Lock, Mail, ShoppingBasket, User } from 'lucide-react';
 
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -22,107 +23,133 @@ export default function Register() {
         });
     };
 
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.1
+            }
+        }
+    };
+
+    const itemVariants = {
+        hidden: { opacity: 0, x: -10 },
+        visible: { opacity: 1, x: 0 }
+    };
+
     return (
         <GuestLayout>
             <Head title="Register" />
 
-            <div className="flex flex-col items-center mb-6">
-                 <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-green-100 dark:bg-green-900 mb-2">
-                    <ShoppingBasket className="h-6 w-6 text-green-600 dark:text-green-400" />
-                 </div>
-                <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Sabotsy Market</h1>
-                <p className="text-sm text-gray-500 dark:text-gray-400">Create your account to get started.</p>
+            <div className="flex flex-col items-center mb-8">
+                <motion.div 
+                    initial={{ scale: 0.5, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ type: "spring", stiffness: 260, damping: 20 }}
+                    className="flex h-16 w-16 items-center justify-center rounded-2xl bg-green-500/10 dark:bg-green-500/20 mb-4 shadow-inner"
+                >
+                    <ShoppingBasket className="h-8 w-8 text-green-600 dark:text-green-400" />
+                </motion.div>
+                <h1 className="text-3xl font-black tracking-tight text-gray-900 dark:text-white">Create Account</h1>
+                <p className="mt-2 text-sm font-medium text-gray-500 dark:text-gray-400 text-center">
+                    Join Sabotsy Market and start your shopping journey.
+                </p>
             </div>
 
-            <form onSubmit={submit}>
-                <div>
-                    <InputLabel htmlFor="name" value="Name" />
+            <form onSubmit={submit} className="space-y-5">
+                <motion.div variants={containerVariants} initial="hidden" animate="visible">
+                    <motion.div variants={itemVariants} className="space-y-1.5">
+                        <InputLabel htmlFor="name" value="Full Name" className="ml-1 font-bold text-gray-700 dark:text-gray-300" />
+                        <div className="relative group">
+                            <TextInput
+                                id="name"
+                                name="name"
+                                value={data.name}
+                                className="block w-full rounded-2xl border-gray-200 bg-white/50 py-3 pl-11 shadow-sm transition-all focus:border-green-500 focus:ring-green-500 dark:border-zinc-800 dark:bg-zinc-900/50"
+                                autoComplete="name"
+                                isFocused={true}
+                                onChange={(e) => setData('name', e.target.value)}
+                                required
+                            />
+                            <User className="absolute left-4 top-3.5 h-4.5 w-4.5 text-gray-400 transition-colors group-focus-within:text-green-500" />
+                        </div>
+                        <InputError message={errors.name} className="mt-1.5" />
+                    </motion.div>
 
-                    <TextInput
-                        id="name"
-                        name="name"
-                        value={data.name}
-                        className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500"
-                        autoComplete="name"
-                        isFocused={true}
-                        onChange={(e) => setData('name', e.target.value)}
-                        required
-                    />
+                    <motion.div variants={itemVariants} className="mt-4 space-y-1.5">
+                        <InputLabel htmlFor="email" value="Email Address" className="ml-1 font-bold text-gray-700 dark:text-gray-300" />
+                        <div className="relative group">
+                            <TextInput
+                                id="email"
+                                type="email"
+                                name="email"
+                                value={data.email}
+                                className="block w-full rounded-2xl border-gray-200 bg-white/50 py-3 pl-11 shadow-sm transition-all focus:border-green-500 focus:ring-green-500 dark:border-zinc-800 dark:bg-zinc-900/50"
+                                autoComplete="username"
+                                onChange={(e) => setData('email', e.target.value)}
+                                required
+                            />
+                            <Mail className="absolute left-4 top-3.5 h-4.5 w-4.5 text-gray-400 transition-colors group-focus-within:text-green-500" />
+                        </div>
+                        <InputError message={errors.email} className="mt-1.5" />
+                    </motion.div>
 
-                    <InputError message={errors.name} className="mt-2" />
-                </div>
+                    <motion.div variants={itemVariants} className="mt-4 space-y-1.5">
+                        <InputLabel htmlFor="password" value="Password" className="ml-1 font-bold text-gray-700 dark:text-gray-300" />
+                        <div className="relative group">
+                            <TextInput
+                                id="password"
+                                type="password"
+                                name="password"
+                                value={data.password}
+                                className="block w-full rounded-2xl border-gray-200 bg-white/50 py-3 pl-11 shadow-sm transition-all focus:border-green-500 focus:ring-green-500 dark:border-zinc-800 dark:bg-zinc-900/50"
+                                autoComplete="new-password"
+                                onChange={(e) => setData('password', e.target.value)}
+                                required
+                            />
+                            <Lock className="absolute left-4 top-3.5 h-4.5 w-4.5 text-gray-400 transition-colors group-focus-within:text-green-500" />
+                        </div>
+                        <InputError message={errors.password} className="mt-1.5" />
+                    </motion.div>
 
-                <div className="mt-4">
-                    <InputLabel htmlFor="email" value="Email" />
+                    <motion.div variants={itemVariants} className="mt-4 space-y-1.5">
+                        <InputLabel htmlFor="password_confirmation" value="Confirm Password" className="ml-1 font-bold text-gray-700 dark:text-gray-300" />
+                        <div className="relative group">
+                            <TextInput
+                                id="password_confirmation"
+                                type="password"
+                                name="password_confirmation"
+                                value={data.password_confirmation}
+                                className="block w-full rounded-2xl border-gray-200 bg-white/50 py-3 pl-11 shadow-sm transition-all focus:border-green-500 focus:ring-green-500 dark:border-zinc-800 dark:bg-zinc-900/50"
+                                autoComplete="new-password"
+                                onChange={(e) => setData('password_confirmation', e.target.value)}
+                                required
+                            />
+                            <Lock className="absolute left-4 top-3.5 h-4.5 w-4.5 text-gray-400 transition-colors group-focus-within:text-green-500" />
+                        </div>
+                        <InputError message={errors.password_confirmation} className="mt-1.5" />
+                    </motion.div>
 
-                    <TextInput
-                        id="email"
-                        type="email"
-                        name="email"
-                        value={data.email}
-                        className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500"
-                        autoComplete="username"
-                        onChange={(e) => setData('email', e.target.value)}
-                        required
-                    />
-
-                    <InputError message={errors.email} className="mt-2" />
-                </div>
-
-                <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Password" />
-
-                    <TextInput
-                        id="password"
-                        type="password"
-                        name="password"
-                        value={data.password}
-                        className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500"
-                        autoComplete="new-password"
-                        onChange={(e) => setData('password', e.target.value)}
-                        required
-                    />
-
-                    <InputError message={errors.password} className="mt-2" />
-                </div>
-
-                <div className="mt-4">
-                    <InputLabel
-                        htmlFor="password_confirmation"
-                        value="Confirm Password"
-                    />
-
-                    <TextInput
-                        id="password_confirmation"
-                        type="password"
-                        name="password_confirmation"
-                        value={data.password_confirmation}
-                        className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500"
-                        autoComplete="new-password"
-                        onChange={(e) =>
-                            setData('password_confirmation', e.target.value)
-                        }
-                        required
-                    />
-
-                    <InputError
-                        message={errors.password_confirmation}
-                        className="mt-2"
-                    />
-                </div>
-
-                <div className="mt-4 flex items-center justify-end">
-                    <Link
-                        href={route('login')}
-                        className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
-                    >
-                        Already registered?
-                    </Link>
-
-                    <PrimaryButton className="ms-4 bg-green-600 hover:bg-green-700 focus:bg-green-700 active:bg-green-900" disabled={processing}>
-                        Register
-                    </PrimaryButton>
-                </div>
+                    <motion.div variants={itemVariants} className="mt-8 flex flex-col space-y-4">
+                        <PrimaryButton 
+                            className="w-full justify-center rounded-2xl bg-gradient-to-r from-green-600 to-emerald-600 py-4 text-base font-black uppercase tracking-widest text-white shadow-lg shadow-green-500/20 transition-all hover:scale-[1.02] hover:shadow-green-500/30 active:scale-95 disabled:opacity-70" 
+                            disabled={processing}
+                        >
+                            Register
+                        </PrimaryButton>
+                        
+                        <p className="text-center text-sm font-bold text-gray-500 dark:text-gray-400">
+                            Already have an account?{' '}
+                            <Link
+                                href={route('login')}
+                                className="text-green-600 hover:text-green-700 dark:text-green-500 transition-colors"
+                            >
+                                Log in
+                            </Link>
+                        </p>
+                    </motion.div>
+                </motion.div>
             </form>
         </GuestLayout>
     );
