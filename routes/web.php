@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\ProductsController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\ProducerDashboardController;
+use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ProductsController::class, 'index']);
@@ -13,13 +13,13 @@ Route::post('/order', [\App\Http\Controllers\OrderController::class, 'store'])->
 // Dashboard route with role-based redirection
 Route::get('/dashboard', function () {
     $user = auth()->user();
-    
+
     if ($user->isAdmin()) {
         return redirect()->route('admin.dashboard');
     } elseif ($user->isProducer()) {
         return redirect()->route('producer.dashboard');
     }
-    
+
     return redirect('/');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -40,6 +40,8 @@ Route::middleware(['auth', 'verified', 'producer'])->prefix('producer')->name('p
     Route::put('/products/{product}', [ProducerDashboardController::class, 'update'])->name('products.update');
     Route::delete('/products/{product}', [ProducerDashboardController::class, 'destroy'])->name('products.destroy');
     Route::get('/orders', [ProducerDashboardController::class, 'orders'])->name('orders');
+    Route::get('/productsList', [ProducerDashboardController::class, 'show'])->name('productsList');
+
 });
 
 Route::middleware('auth')->group(function () {

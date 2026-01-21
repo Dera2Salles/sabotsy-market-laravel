@@ -1,0 +1,218 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* New Project Colors */
+  --color-brand-primary: #288279;
+  --color-brand-primary-light: #34b5ab;
+  --color-brand-primary-dark: #0c423b;
+  --color-brand-primary-navy: #112a41;
+  --color-brand-gold: #f3c66a;
+
+  --color-brand-secondary: #799F9C;
+  --color-brand-teal: #5FAFA7;
+  --color-brand-mint: #C4ECEA;
+  --color-brand-sand: #C7B07A;
+  --color-brand-cream: #FCF2D9;
+  --color-brand-ochre: #D5A947;
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: #ffffff;
+  --foreground: #112a41;
+  --card: #ffffff;
+  --card-foreground: #112a41;
+  --popover: #ffffff;
+  --popover-foreground: #112a41;
+  --primary: #288279;
+  --primary-foreground: #ffffff;
+  --secondary: #799F9C;
+  --secondary-foreground: #ffffff;
+  --muted: #C4ECEA;
+  --muted-foreground: #288279;
+  --accent: #34b5ab;
+  --accent-foreground: #ffffff;
+  --destructive: #D5A947;
+  --border: #C4ECEA;
+  --input: #C4ECEA;
+  --ring: #288279;
+  --chart-1: #288279;
+  --chart-2: #34b5ab;
+  --chart-3: #112a41;
+  --chart-4: #f3c66a;
+  --chart-5: #799F9C;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #112a41;
+  --sidebar-primary: #288279;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #C4ECEA;
+  --sidebar-accent-foreground: #288279;
+  --sidebar-border: #C4ECEA;
+  --sidebar-ring: #288279;
+}
+
+.dark {
+  --background: #000000;
+  --foreground: #ffffff;
+  --card: #0a1929;
+  --card-foreground: #ffffff;
+  --popover: #0a1929;
+  --popover-foreground: #ffffff;
+  --primary: #112a41;
+  --primary-foreground: #ffffff;
+  --secondary: #288279;
+  --secondary-foreground: #ffffff;
+  --muted: #0a1929;
+  --muted-foreground: #799F9C;
+  --accent: #288279;
+  --accent-foreground: #ffffff;
+  --destructive: #f3c66a;
+  --border: #112a41;
+  --input: #112a41;
+  --ring: #112a41;
+  --chart-1: #112a41;
+  --chart-2: #288279;
+  --chart-3: #799F9C;
+  --chart-4: #f3c66a;
+  --chart-5: #C7B07A;
+  --sidebar: #0a1929;
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #112a41;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #288279;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #112a41;
+  --sidebar-ring: #112a41;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Styles pour TipTap Editor */
+.ProseMirror {
+  min-height: 400px;
+  padding: 1rem;
+  outline: none;
+}
+
+.ProseMirror p {
+  margin-bottom: 1em;
+}
+
+.ProseMirror h1 {
+  font-size: 2em;
+  font-weight: bold;
+  margin: 1em 0 0.5em 0;
+}
+
+.ProseMirror h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 1em 0 0.5em 0;
+}
+
+.ProseMirror h3 {
+  font-size: 1.17em;
+  font-weight: bold;
+  margin: 1em 0 0.5em 0;
+}
+
+/* Styles pour l'affichage du contenu (Editor, Preview et Viewer) */
+.prose ul,
+.content-area ul {
+  list-style-type: disc !important;
+  padding-left: 1.5em !important;
+  margin: 1em 0 !important;
+}
+
+.prose ol,
+.content-area ol {
+  list-style-type: decimal !important;
+  padding-left: 1.5em !important;
+  margin: 1em 0 !important;
+}
+
+.prose blockquote,
+.content-area blockquote {
+  border-left: 3px solid #ddd;
+  padding-left: 1em;
+  margin: 1em 0;
+  font-style: italic;
+}
+
+.prose a,
+.content-area a {
+  color: #288279;
+  text-decoration: underline;
+}
+
+.dark .prose blockquote,
+.dark .content-area blockquote {
+  border-left-color: #112a41;
+  background-color: rgba(17, 42, 65, 0.2);
+}
+
+/* Webkit Autofill Override */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #112a41 inset !important;
+  -webkit-text-fill-color: white !important;
+}
+
+.dark input:-webkit-autofill,
+.dark input:-webkit-autofill:hover,
+.dark input:-webkit-autofill:focus,
+.dark input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #0a1929 inset !important;
+  -webkit-text-fill-color: white !important;
+}

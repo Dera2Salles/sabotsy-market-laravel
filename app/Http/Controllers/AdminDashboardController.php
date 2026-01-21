@@ -1,10 +1,9 @@
 <?php
-
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
-use App\Models\Order;
 use Inertia\Inertia;
 
 class AdminDashboardController extends Controller
@@ -15,11 +14,11 @@ class AdminDashboardController extends Controller
     public function index()
     {
         // Get system-wide statistics
-        $totalUsers = User::count();
+        $totalUsers     = User::count();
         $totalProducers = User::where('role', User::ROLE_PRODUCER)->count();
         $totalCustomers = User::where('role', User::ROLE_CUSTOMER)->count();
-        $totalProducts = Product::count();
-        $totalOrders = Order::count();
+        $totalProducts  = Product::count();
+        $totalOrders    = Order::count();
 
         // Get recent users
         $recentUsers = User::latest()->take(5)->get();
@@ -32,15 +31,15 @@ class AdminDashboardController extends Controller
         });
 
         return Inertia::render('AdminDashboard/index', [
-            'stats' => [
-                'totalUsers' => $totalUsers,
+            'stats'       => [
+                'totalUsers'     => $totalUsers,
                 'totalProducers' => $totalProducers,
                 'totalCustomers' => $totalCustomers,
-                'totalProducts' => $totalProducts,
-                'totalOrders' => $totalOrders,
+                'totalProducts'  => $totalProducts,
+                'totalOrders'    => $totalOrders,
             ],
             'recentUsers' => $recentUsers,
-            'products' => $products,
+            'products'    => $products,
         ]);
     }
 

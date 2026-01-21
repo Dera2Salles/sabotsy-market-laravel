@@ -1,0 +1,44 @@
+"use client";
+
+import { motion } from 'framer-motion';
+import { AboutSection } from './components/AboutSection';
+import { ExperienceSection } from './components/ExperienceSection';
+import { FounderSection } from './components/FounderSection';
+import { HeroSection } from './components/HeroSection';
+import { ServicesSection } from './components/ServicesSection';
+import { TeamSection } from './components/TeamSection';
+import { TestimonialsSection } from './components/TestimonialsSection';
+
+export default function HomeComponent() {
+  return (
+    <motion.div 
+      initial={{ opacity: 0 }} 
+      animate={{ opacity: 1 }} 
+      transition={{ duration: 0.5 }}
+      className="min-h-screen bg-background"
+    >
+      <HeroSection />
+      <ServicesSection />
+      <ExperienceSection />
+      <AboutSection />
+      <FounderSection />
+      <TeamSection />
+      <TestimonialsSection />
+      
+      {/* Simple Footer */}
+      <footer className="bg-brand-primary-navy py-12 text-white">
+        <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="text-center md:text-left">
+            <h3 className="text-2xl font-bold mb-2">Luxe Estates</h3>
+            <p className="text-gray-400 text-sm">© 2025 Luxe Estates Agency. Tous droits réservés.</p>
+          </div>
+          <div className="flex gap-6 text-sm text-gray-300">
+             <a href="#" className="hover:text-brand-gold transition-colors">Politique de Confidentialité</a>
+             <a href="#" className="hover:text-brand-gold transition-colors">Conditions d'Utilisation</a>
+             <a href="#" className="hover:text-brand-gold transition-colors">Contact</a>
+          </div>
+        </div>
+      </footer>
+    </motion.div>
+  );
+}

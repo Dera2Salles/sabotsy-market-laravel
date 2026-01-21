@@ -40,7 +40,7 @@ export default function Login({ status, canResetPassword }) {
 
     return (
         <GuestLayout>
-            <Head title="Log in" />
+            <Head title="Se connecter" />
 
             <div className="flex flex-col items-center mb-8">
                 <motion.div 
@@ -51,9 +51,9 @@ export default function Login({ status, canResetPassword }) {
                 >
                     <ShoppingBasket className="h-8 w-8 text-green-600 dark:text-green-400" />
                 </motion.div>
-                <h1 className="text-3xl font-black tracking-tight text-gray-900 dark:text-white">Welcome Back</h1>
+                <h1 className="text-3xl font-black tracking-tight text-gray-900 dark:text-white">Bon retour</h1>
                 <p className="mt-2 text-sm font-medium text-gray-500 dark:text-gray-400 text-center">
-                    Enter your credentials to access your market account.
+                    Entrez vos identifiants pour accéder à votre compte marché.
                 </p>
             </div>
 
@@ -70,7 +70,7 @@ export default function Login({ status, canResetPassword }) {
             <form onSubmit={submit} className="space-y-6">
                 <motion.div variants={containerVariants} initial="hidden" animate="visible">
                     <motion.div variants={itemVariants} className="space-y-1.5">
-                        <InputLabel htmlFor="email" value="Email Address" className="ml-1 font-bold text-gray-700 dark:text-gray-300" />
+                        <InputLabel htmlFor="email" value="Adresse E-mail" className="ml-1 font-bold text-gray-700 dark:text-gray-300" />
                         <div className="relative group">
                             <TextInput
                                 id="email"
@@ -88,7 +88,7 @@ export default function Login({ status, canResetPassword }) {
                     </motion.div>
 
                     <motion.div variants={itemVariants} className="mt-5 space-y-1.5">
-                        <InputLabel htmlFor="password" value="Password" className="ml-1 font-bold text-gray-700 dark:text-gray-300" />
+                        <InputLabel htmlFor="password" value="Mot de passe" className="ml-1 font-bold text-gray-700 dark:text-gray-300" />
                         <div className="relative group">
                             <TextInput
                                 id="password"
@@ -113,7 +113,7 @@ export default function Login({ status, canResetPassword }) {
                                 className="h-5 w-5 rounded-md border-gray-300 text-green-600 shadow-sm focus:ring-green-500 dark:border-zinc-800 dark:bg-zinc-900"
                             />
                             <span className="ms-3 text-sm font-semibold text-gray-600 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-gray-200 transition-colors">
-                                Remember me
+                                Se souvenir de moi
                             </span>
                         </label>
 
@@ -122,7 +122,7 @@ export default function Login({ status, canResetPassword }) {
                                 href={route('password.request')}
                                 className="text-sm font-bold text-green-600 hover:text-green-700 dark:text-green-500 dark:hover:text-green-400 transition-colors"
                             >
-                                Forgot password?
+                                Mot de passe oublié ?
                             </Link>
                         )}
                     </motion.div>
@@ -132,16 +132,16 @@ export default function Login({ status, canResetPassword }) {
                             className="w-full justify-center rounded-2xl bg-gradient-to-r from-green-600 to-emerald-600 py-4 text-base font-black uppercase tracking-widest text-white shadow-lg shadow-green-500/20 transition-all hover:scale-[1.02] hover:shadow-green-500/30 active:scale-95 disabled:opacity-70" 
                             disabled={processing}
                         >
-                            Log in
+                            S'identifier
                         </PrimaryButton>
                         
                         <p className="text-center text-sm font-bold text-gray-500 dark:text-gray-400">
-                            Don't have an account?{' '}
+                            Vous n'avez pas de compte ?{' '}
                             <Link
                                 href={route('register')}
                                 className="text-green-600 hover:text-green-700 dark:text-green-500 transition-colors"
                             >
-                                Create one now
+                                Créer un compte
                             </Link>
                         </p>
                     </motion.div>

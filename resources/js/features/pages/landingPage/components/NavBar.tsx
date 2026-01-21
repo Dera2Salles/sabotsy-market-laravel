@@ -9,7 +9,6 @@ import { Description } from './Description';
 import { Link, usePage } from '@inertiajs/react';
 
 // Add declaration for Ziggy's route helper
-declare function route(name?: string, params?: any, absolute?: boolean): string;
 
 export const NavBar = () => {
     const { ref, isVisible } = useIntersection();
@@ -43,13 +42,15 @@ export const NavBar = () => {
                                 </p>
                             </div>
 
-                            {(usePage().props as any).auth?.user ? (
+                            {(usePage().props as any).auth?.user &&
+                            (usePage().props as any).auth?.user.role !=
+                                'customer' ? (
                                 <Link href={route('dashboard')}>
                                     <Button
                                         variant="outline"
-                                        className="h-10 rounded-full border-0 bg-white/10 hover:bg-white/20 text-white backdrop-blur-sm transition-all duration-300"
+                                        className="h-10 rounded-full border-0 bg-white/10 text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/20"
                                     >
-                                         Dashboard
+                                        Dashboard
                                     </Button>
                                 </Link>
                             ) : (

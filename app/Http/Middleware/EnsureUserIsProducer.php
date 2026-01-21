@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Middleware;
 
 use Closure;
@@ -15,8 +14,9 @@ class EnsureUserIsProducer
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!$request->user() || !$request->user()->isProducer()) {
-            abort(403, 'Unauthorized access. Producer privileges required.');
+        if (! $request->user() || ! $request->user()->isProducer()) {
+            return redirect()->route('login')->with('Unauthorized access. Producer privileges required.');
+
         }
 
         return $next($request);

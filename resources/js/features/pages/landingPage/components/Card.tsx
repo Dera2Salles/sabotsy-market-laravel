@@ -22,7 +22,7 @@ export const CardProduct: React.FC<CardProductProps> = ({ product }) => {
     return (
         <Card
             className={cn(
-                'dark:border-1 w-[350px] transform overflow-hidden rounded-lg border-2 border-green-100 shadow-lg transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl md:w-[320px] dark:border-zinc-500 dark:bg-zinc-800',
+                'dark:border-1 w-[350px] transform overflow-hidden rounded-lg border-2 border-green-100 shadow-lg transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl dark:border-zinc-500 dark:bg-zinc-800 md:w-[320px]',
             )}
         >
             <CardHeader className="p-0">
@@ -43,7 +43,7 @@ export const CardProduct: React.FC<CardProductProps> = ({ product }) => {
                 </p>
                 <div className="mb-4 flex items-center justify-between">
                     <p className="text-lg font-semibold text-green-600">
-                        {product.unit_price || '0'}.00 MGA
+                        {product.unit_price || '0'} MGA
                     </p>
                     <p className="text-sm text-gray-500 transition-all duration-500 dark:text-gray-300">
                         Stock: {product.unit_stock}

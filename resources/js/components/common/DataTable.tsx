@@ -56,10 +56,16 @@ export function DataTable<TData, TValue>({
                 <Table>
                     <TableHeader className="bg-gray-50/50 dark:bg-zinc-900/50">
                         {table.getHeaderGroups().map((headerGroup) => (
-                            <TableRow key={headerGroup.id} className="hover:bg-transparent border-b border-gray-100 dark:border-zinc-800">
+                            <TableRow
+                                key={headerGroup.id}
+                                className="border-b border-gray-100 hover:bg-transparent dark:border-zinc-800"
+                            >
                                 {headerGroup.headers.map((header) => {
                                     return (
-                                        <TableHead key={header.id} className="text-xs uppercase tracking-wider font-semibold text-gray-500 dark:text-gray-400 h-10">
+                                        <TableHead
+                                            key={header.id}
+                                            className="h-10 text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400"
+                                        >
                                             {header.isPlaceholder
                                                 ? null
                                                 : flexRender(
@@ -81,10 +87,13 @@ export function DataTable<TData, TValue>({
                                     data-state={
                                         row.getIsSelected() && 'selected'
                                     }
-                                    className="border-b border-gray-50 dark:border-zinc-800/50 hover:bg-gray-50/50 dark:hover:bg-zinc-800/50 transition-colors"
+                                    className="border-b border-gray-50 transition-colors hover:bg-gray-50/50 dark:border-zinc-800/50 dark:hover:bg-zinc-800/50"
                                 >
                                     {row.getVisibleCells().map((cell) => (
-                                        <TableCell key={cell.id} className="py-3 text-sm">
+                                        <TableCell
+                                            key={cell.id}
+                                            className="py-3 text-sm"
+                                        >
                                             {flexRender(
                                                 cell.column.columnDef.cell,
                                                 cell.getContext(),
@@ -119,20 +128,32 @@ export function DataTable<TData, TValue>({
                                 .replace('&laquo;', '')
                                 .replace('&raquo;', '')
                                 .trim();
-                            
+
                             if (!link.url) {
                                 return (
                                     <PaginationItem key={i}>
                                         <span className="flex h-9 w-9 items-center justify-center rounded-md border border-input bg-transparent text-sm font-medium opacity-50">
                                             {label === 'Previous' ? (
-                                                 <span className="sr-only">Previous</span> 
+                                                <span className="sr-only">
+                                                    Previous
+                                                </span>
                                             ) : label === 'Next' ? (
-                                                <span className="sr-only">Next</span>
+                                                <span className="sr-only">
+                                                    Next
+                                                </span>
                                             ) : (
-                                                <span dangerouslySetInnerHTML={{ __html: link.label }} />
+                                                <span
+                                                    dangerouslySetInnerHTML={{
+                                                        __html: link.label,
+                                                    }}
+                                                />
                                             )}
-                                            {label === 'Previous' && <span>&lt;</span>}
-                                            {label === 'Next' && <span>&gt;</span>}
+                                            {label === 'Previous' && (
+                                                <span>&lt;</span>
+                                            )}
+                                            {label === 'Next' && (
+                                                <span>&gt;</span>
+                                            )}
                                         </span>
                                     </PaginationItem>
                                 );
@@ -168,7 +189,11 @@ export function DataTable<TData, TValue>({
                                         href={link.url}
                                         isActive={link.active}
                                     >
-                                        <span dangerouslySetInnerHTML={{ __html: link.label }} />
+                                        <span
+                                            dangerouslySetInnerHTML={{
+                                                __html: link.label,
+                                            }}
+                                        />
                                     </PaginationLink>
                                 </PaginationItem>
                             );

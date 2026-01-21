@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\order;
@@ -35,7 +34,7 @@ class OrderController extends Controller
             'OrderItems.*.unit_price' => 'required|numeric',
         ]);
 
-        $user = auth()->user();
+            $user = auth()->user();
 
         foreach ($validated['OrderItems'] as $item) {
             \App\Models\Order::create([

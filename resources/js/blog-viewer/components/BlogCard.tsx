@@ -1,0 +1,120 @@
+import { Badge } from '@/components/ui/badge';
+import { Card, CardContent } from '@/components/ui/card';
+import type { WordPressPost } from '@/services/wordpress/wordpress.types';
+import { Calendar, Clock, User } from 'lucide-react';
+
+import Image from 'next/image';
+
+interface BlogCardProps {
+  post: WordPressPost;
+  onClick: () => void;
+}
+
+export function BlogCard({ post, onClick }: BlogCardProps) {
+  const featuredImage = post?._embedded?.['wp:featuredmedia']?.[0]?.source_url;
+
+  const authorName = post?._embedded?.author?.[0]?.name || 'Unknown Author';
+
+  const categories = post?._embedded?.['wp:term']?.[0] || [];
+
+  const formatDate = (dateString?: string) => {
+    if (!dateString) return '';
+    const date = new Date(dateString);
+    return date.toLocaleDateString('fr-FR', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+  };
+
+  const calculateReadingTime = (content: string) => {
+    const text = content.replace(/<[^>]*>/g, ''); // Strip HTML
+    const wordCount = text.split(/\s+/).length;
+    const minutes = Math.ceil(wordCount / 200);
+    return `${minutes} min`;
+  };
+
+  return (
+    <Card
+      onClick={onClick}
+      className="group cursor-pointer overflow-hidden border-none bg-white dark:bg-card shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
+    >
+      {/* Featured Image */}
+      {featuredImage && (
+        <div className="relative h-64 overflow-hidden">
+          <Image
+            src={featuredImage}
+            alt={post.title?.rendered || 'Post image'}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            priority={false}
+          />
+          <div className="absolute inset-0 bg-linear-to-t from-brand-primary-navy/80 via-transparent to-transparent opacity-80" />
+
+          {/* Categories on image */}
+          {categories.length > 0 && (
+            <div className="absolute top-4 left-4 flex flex-wrap gap-2">
+              {categories
+                .slice(0, 2)
+                .map((category: { id: number; name: string }) => (
+                  <Badge
+                    key={category.id}
+                    className="bg-white/90 text-brand-primary-navy backdrop-blur-md px-3 py-1 text-xs uppercase tracking-wider font-medium hover:bg-white"
+                  >
+                    {category.name}
+                  </Badge>
+                ))}
+            </div>
+          )}
+        </div>
+      )}
+
+      <CardContent className="p-6 space-y-4">
+        {/* Title */}
+        <h3
+          className="text-2xl font-bold text-brand-primary-dark dark:text-brand-mint line-clamp-2 group-hover:text-brand-primary dark:group-hover:text-brand-primary-light transition-colors"
+          dangerouslySetInnerHTML={{
+            __html: post.title?.rendered || 'Untitled',
+          }}
+        />
+
+        {/* Excerpt */}
+        {post.excerpt?.rendered && (
+          <div
+            className="text-brand-primary-navy/70 dark:text-brand-secondary line-clamp-3 text-sm leading-relaxed"
+            dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }}
+          />
+        )}
+
+        {/* Metadata */}
+        <div className="flex flex-wrap items-center gap-4 text-sm text-brand-secondary dark:text-brand-secondary/80 pt-4 border-t border-brand-mint dark:border-brand-primary/30">
+          <div className="flex items-center gap-1.5">
+            <User className="h-4 w-4" />
+            <span>{authorName}</span>
+          </div>
+
+          <div className="flex items-center gap-1.5">
+            <Calendar className="h-4 w-4" />
+            <span>{formatDate(post.date)}</span>
+          </div>
+
+          {post.content?.rendered && (
+            <div className="flex items-center gap-1.5">
+              <Clock className="h-4 w-4" />
+              <span>{calculateReadingTime(post.content.rendered)}</span>
+            </div>
+          )}
+        </div>
+
+        {/* Read More Button */}
+        <div className="pt-2">
+          <span className="inline-flex items-center text-brand-primary dark:text-brand-primary-light font-semibold group-hover:gap-2 transition-all">
+            Lire la suite
+            <span className="ml-1 group-hover:ml-2 transition-all">→</span>
+          </span>
+        </div>
+      </CardContent>
+    </Card>
+  );
+}

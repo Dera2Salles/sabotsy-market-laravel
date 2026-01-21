@@ -10,7 +10,10 @@ interface ProducerDashboardProps {
     products: any;
 }
 
-export const ProducerDashboardPage = ({ stats, products }: ProducerDashboardProps) => {
+export const ProducerDashboardPage = ({
+    stats,
+    products,
+}: ProducerDashboardProps) => {
     return (
         <ProducerDashboardProvider>
             <SidebarProvider>

@@ -1,15 +1,14 @@
-import { ProductRepositoryImp } from './features/product/ProductRepositoryImpl';
 import { AuthRepositoryImpl } from './features/auth/AuthRepositoryImpl';
 import { MemoryStorage } from './features/product/productMemoryStorage';
+import { ProductRepositoryImp } from './features/product/ProductRepositoryImpl';
 
 import axios from 'axios';
-import { OrderRemoteDataSourceImpl } from './features/order/OrderServerSource';
 import { AuthServiceImpl } from './features/auth/AuthService';
 import { OrderRepositoryImpl } from './features/order/OrderRepositoryImpl';
+import { OrderRemoteDataSourceImpl } from './features/order/OrderServerSource';
 
 const api = axios.create({
-  timeout: 5000,
-  withCredentials: true,
+    timeout: 5000,
 });
 
 const orderServiceServer = new OrderRemoteDataSourceImpl(api);
