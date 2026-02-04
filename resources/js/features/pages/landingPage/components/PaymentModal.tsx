@@ -50,7 +50,7 @@ export const PaymentModal = ({
                                 <div className="flex items-center justify-between">
                                     <CardTitle className="text-xl font-bold flex items-center gap-2">
                                         <ShieldCheck className="w-6 h-6" />
-                                        Secure Checkout
+                                        Paiement Sécurisé
                                     </CardTitle>
                                     <button
                                         onClick={onClose}
@@ -60,12 +60,12 @@ export const PaymentModal = ({
                                     </button>
                                 </div>
                                 <CardDescription className="text-emerald-50">
-                                    Complete your purchase of {totalAmount} MGA
+                                    Complétez votre achat de {totalAmount} MGA
                                 </CardDescription>
                             </CardHeader>
                             <CardContent className="p-6 space-y-4">
                                 <div className="space-y-2">
-                                    <Label htmlFor="card">Card Number (Mock)</Label>
+                                    <Label htmlFor="card">Numéro de Carte (Démo)</Label>
                                     <div className="relative">
                                         <Input
                                             id="card"
@@ -79,10 +79,10 @@ export const PaymentModal = ({
                                 </div>
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className="space-y-2">
-                                        <Label htmlFor="expiry">Expiry Date</Label>
+                                        <Label htmlFor="expiry">Date d'Expiration</Label>
                                         <Input
                                             id="expiry"
-                                            placeholder="MM/YY"
+                                            placeholder="MM/AA"
                                             defaultValue="12/25"
                                             disabled={isProcessing}
                                         />
@@ -100,7 +100,7 @@ export const PaymentModal = ({
                                 <div className="bg-emerald-50 dark:bg-emerald-900/20 p-4 rounded-xl flex gap-3 items-start border border-emerald-100 dark:border-emerald-800">
                                     <ShieldCheck className="w-5 h-5 text-emerald-600 mt-0.5" />
                                     <p className="text-sm text-emerald-800 dark:text-emerald-300">
-                                        This is a simulated secure payment for Sabotsy Market. No actual funds will be deducted.
+                                        Ceci est un paiement sécurisé simulé pour Sabotsy Market. Aucun fonds réel ne sera déduit.
                                     </p>
                                 </div>
                             </CardContent>
@@ -113,15 +113,15 @@ export const PaymentModal = ({
                                     {isProcessing ? (
                                         <>
                                             <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                                            Processing...
+                                            Traitement...
                                         </>
                                     ) : (
-                                        `Pay ${totalAmount} MGA`
+                                        `Payer ${totalAmount} MGA`
                                     )}
                                 </Button>
                                 <p className="text-xs text-center text-gray-500 flex items-center justify-center gap-1">
                                     <Lock className="w-3 h-3" />
-                                    End-to-end encrypted
+                                    Chiffré de bout en bout
                                 </p>
                             </CardFooter>
                         </Card>

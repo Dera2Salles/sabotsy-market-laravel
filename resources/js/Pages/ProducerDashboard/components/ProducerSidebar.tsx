@@ -12,17 +12,17 @@ import { useState } from 'react';
 
 const MENU_ITEMS = [
     {
-        title: 'Dashboard',
+        title: 'Tableau de bord',
         icon: BarChart,
         href: 'producer.dashboard',
     },
     {
-        title: 'My Products',
+        title: 'Mes Produits',
         icon: Package,
         href: 'producer.productsList',
     },
     {
-        title: 'Orders',
+        title: 'Commandes',
         icon: ShoppingCart,
         href: 'producer.orders',
     },
@@ -71,7 +71,7 @@ export function ProducerSidebar() {
                         </div>
                         <div className="flex flex-col items-center gap-0.5 leading-none">
                             <span className="font-bold text-xl text-white tracking-tight">Sabotsy</span>
-                            <span className="text-[10px] font-bold text-emerald-500 tracking-widest uppercase">Producer</span>
+                            <span className="text-[10px] font-bold text-emerald-500 tracking-widest uppercase">Producteur</span>
                         </div>
                     </div>
                 )}
@@ -157,7 +157,7 @@ export function ProducerSidebar() {
                         className="flex-shrink-0 transition-transform group-hover:-translate-x-1"
                     />
                     {!isCollapsed && (
-                        <span className="text-sm font-bold">Logout</span>
+                        <span className="text-sm font-bold">Déconnexion</span>
                     )}
                 </button>
             </div>

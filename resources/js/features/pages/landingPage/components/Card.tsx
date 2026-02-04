@@ -69,8 +69,7 @@ export const CardProduct: React.FC<CardProductProps> = ({ product }) => {
                                     bloc?.addProducToTheOrder(product);
                                 }}
                             >
-                                <MdShoppingCart className="text-xl" /> Add to
-                                cart
+                                <MdShoppingCart className="text-xl" /> Ajouter au panier
                             </Button>
                         )}
                     </div>

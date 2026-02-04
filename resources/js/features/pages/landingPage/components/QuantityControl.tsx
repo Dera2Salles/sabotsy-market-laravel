@@ -52,7 +52,7 @@ export const QuantityControl: React.FC<QuantityControlProps> = ({
                             </span>
                         </div>
                         <p className="mt-2 text-xs font-medium tracking-wide text-green-600/60">
-                            QUANTITY
+                            QUANTITÉ
                         </p>
                     </motion.div>
                 </AnimatePresence>
@@ -64,7 +64,7 @@ export const QuantityControl: React.FC<QuantityControlProps> = ({
                         className="absolute -top-1 left-0 right-0"
                     >
                         <div className="mx-auto rounded-md border border-amber-300/50 bg-amber-500 px-3 py-1.5 text-center text-xs font-medium tracking-tight text-white shadow-sm backdrop-blur-sm">
-                            MAX STOCK
+                            STOCK MAX
                         </div>
                     </motion.div>
                 )}

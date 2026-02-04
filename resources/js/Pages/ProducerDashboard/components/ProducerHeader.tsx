@@ -4,7 +4,7 @@ export function ProducerHeader() {
       <div className="flex w-full items-center gap-1 px-4 lg:gap-2 lg:px-6">
         <div className="flex-1">
           <h2 className="text-lg font-semibold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
-            Producer Portal
+            Portail Producteur
           </h2>
         </div>
       </div>

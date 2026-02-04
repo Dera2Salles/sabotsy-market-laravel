@@ -110,7 +110,7 @@ export function DataTable<TData, TValue>({
                                 >
                                     <div className="flex flex-col items-center justify-center gap-2 text-muted-foreground">
                                         <Inbox className="h-8 w-8 text-zinc-200" />
-                                        <p>No results found.</p>
+                                        <p>Aucun résultat trouvé.</p>
                                     </div>
                                 </TableCell>
                             </TableRow>
@@ -135,11 +135,11 @@ export function DataTable<TData, TValue>({
                                         <span className="flex h-9 w-9 items-center justify-center rounded-md border border-input bg-transparent text-sm font-medium opacity-50">
                                             {label === 'Previous' ? (
                                                 <span className="sr-only">
-                                                    Previous
+                                                    Précédent
                                                 </span>
                                             ) : label === 'Next' ? (
                                                 <span className="sr-only">
-                                                    Next
+                                                    Suivant
                                                 </span>
                                             ) : (
                                                 <span
@@ -159,7 +159,7 @@ export function DataTable<TData, TValue>({
                                 );
                             }
 
-                            if (label === 'Previous') {
+                            if (label === 'Previous' || label === 'Précédent') {
                                 return (
                                     <PaginationItem key={i}>
                                         <PaginationPrevious href={link.url} />
@@ -167,7 +167,7 @@ export function DataTable<TData, TValue>({
                                 );
                             }
 
-                            if (label === 'Next') {
+                            if (label === 'Next' || label === 'Suivant') {
                                 return (
                                     <PaginationItem key={i}>
                                         <PaginationNext href={link.url} />

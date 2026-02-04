@@ -13,10 +13,10 @@ export default function OrderManagement({ orders }: { orders: any }) {
                         <div className="flex items-center justify-between">
                             <div>
                                 <h1 className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
-                                    Order Management
+                                    Gestion des Commandes
                                 </h1>
                                 <p className="mt-2 text-gray-500 dark:text-gray-400">
-                                    Track and manage all your product orders
+                                    Suivez et gérez toutes les commandes de vos produits
                                 </p>
                             </div>
                         </div>

@@ -2,27 +2,27 @@ import { cn } from '@/lib/utils';
 import { PageProps } from '@/types';
 import { Link, router, usePage } from '@inertiajs/react';
 import {
-  BarChart,
-  ChevronRight,
-  ClipboardList,
-  Database,
-  LogOut
+    BarChart,
+    ChevronRight,
+    ClipboardList,
+    Database,
+    LogOut,
 } from 'lucide-react';
 import { useState } from 'react';
 
 const MENU_ITEMS = [
     {
-        title: 'Dashboard',
+        title: 'Tableau de bord',
         icon: BarChart,
         href: 'admin.dashboard',
     },
     {
-        title: 'User Management',
+        title: 'Gestion des Utilisateurs',
         icon: Database,
         href: 'admin.users',
     },
     {
-        title: 'Producer Management',
+        title: 'Gestion des Producteurs',
         icon: ClipboardList,
         href: 'admin.producers',
     },
@@ -56,22 +56,26 @@ export function AppSidebar() {
             {/* Header / Logo */}
             <div
                 className={cn(
-                    'flex items-center justify-center p-8 pb-12 transition-all border-b border-white/10',
+                    'flex items-center justify-center border-b border-white/10 p-8 pb-12 transition-all',
                     isCollapsed ? 'px-4' : 'px-8',
                 )}
             >
                 {isCollapsed ? (
-                    <h1 className="font-bold text-2xl text-white">
-                        S
-                    </h1>
+                    <h1 className="text-2xl font-bold text-white">S</h1>
                 ) : (
                     <div className="flex flex-col items-center gap-2">
                         <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-teal-500 text-white shadow-lg shadow-emerald-500/20 ring-1 ring-white/10">
-                            <span className="font-bold text-2xl tracking-tight">S</span>
+                            <span className="text-2xl font-bold tracking-tight">
+                                S
+                            </span>
                         </div>
                         <div className="flex flex-col items-center gap-0.5 leading-none">
-                            <span className="font-bold text-xl text-white tracking-tight">Sabotsy</span>
-                            <span className="text-[10px] font-bold text-emerald-500 tracking-widest uppercase">Admin Portal</span>
+                            <span className="text-xl font-bold tracking-tight text-white">
+                                Sabotsy
+                            </span>
+                            <span className="text-[10px] font-bold uppercase tracking-widest text-emerald-500">
+                                Portail Admin
+                            </span>
                         </div>
                     </div>
                 )}
@@ -157,7 +161,7 @@ export function AppSidebar() {
                         className="flex-shrink-0 transition-transform group-hover:-translate-x-1"
                     />
                     {!isCollapsed && (
-                        <span className="text-sm font-bold">Logout</span>
+                        <span className="text-sm font-bold">Déconnexion</span>
                     )}
                 </button>
             </div>

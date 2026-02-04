@@ -35,8 +35,8 @@ export const NavBar = () => {
                             <div className="flex items-center gap-1 font-semibold text-white md:gap-2">
                                 <MdFlashOn className="text-xl text-yellow-400 md:text-2xl" />
                                 <p className="text-xs md:text-base">
-                                    <span className="hidden lg:inline">Order now and get it within{' '}</span>
-                                    <span className="text-yellow-400">15 min!</span>
+                                    <span className="hidden lg:inline">Commandez maintenant et recevez-le en{' '}</span>
+                                    <span className="text-yellow-400">15 min !</span>
                                 </p>
                             </div>
 
@@ -48,7 +48,7 @@ export const NavBar = () => {
                                         variant="outline"
                                         className="h-10 rounded-full border-0 bg-white/10 text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/20"
                                     >
-                                        Dashboard
+                                        Tableau de bord
                                     </Button>
                                 </Link>
                             ) : (

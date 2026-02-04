@@ -24,11 +24,11 @@ export const ProductCardList = () => {
             <div className="container mx-auto px-4">
                 <div className="mb-10 text-center md:mb-16">
                     <h2 className="text-3xl font-extrabold text-green-800 transition-all duration-500 dark:text-amber-100 md:text-5xl">
-                        Our Fresh Products
+                        Nos Produits Frais
                     </h2>
                     <p className="mx-auto mt-4 max-w-2xl text-base text-gray-600 transition-all duration-500 dark:text-gray-300 md:text-lg">
-                        Discover a variety of fresh and organic products from
-                        local farmers.
+                        Découvrez une variété de produits frais et biologiques provenant
+                        d'agriculteurs locaux.
                     </p>
                 </div>
                 <div className="mb-12 flex flex-col items-center justify-between gap-6 md:flex-row md:gap-8">
@@ -40,7 +40,7 @@ export const ProductCardList = () => {
                                 <MdSearch className="ml-4 h-6 w-6 text-gray-400 group-focus-within:text-green-500" />
                                 <input
                                     onChange={(e) => bloc.setSearch(e.target.value)}
-                                    placeholder="Search for fresh food..."
+                                    placeholder="Rechercher des produits frais..."
                                     className="h-12 w-full border-none bg-transparent px-4 text-sm font-medium placeholder-gray-400 focus:outline-none focus:ring-0 dark:text-white md:h-14 md:text-base"
                                 />
                             </div>
@@ -60,7 +60,7 @@ export const ProductCardList = () => {
                                         : 'bg-white text-gray-600 hover:bg-gray-100 dark:bg-zinc-900/50 dark:text-gray-400 dark:hover:bg-zinc-800'
                                 }`}
                             >
-                                All Products
+                                Tous les Produits
                             </motion.button>
                             {categories.map((item, key) => (
                                 <motion.button
@@ -84,7 +84,7 @@ export const ProductCardList = () => {
                     {productList.length === 0 ? (
                         <div className="col-span-full py-12 text-center">
                             <p className="text-2xl font-semibold text-gray-500 transition-all duration-500 dark:text-gray-300">
-                                No products found.
+                                Aucun produit trouvé.
                             </p>
                         </div>
                     ) : (

@@ -11,10 +11,10 @@ export default function UserManagement({ users }: { users: any }) {
                     <div className="flex items-center justify-between">
                         <div>
                             <h1 className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
-                                User Management
+                                Gestion des Utilisateurs
                             </h1>
                             <p className="mt-2 text-gray-500 dark:text-gray-400">
-                                Manage and monitor all registered users
+                                Gérer et surveiller tous les utilisateurs inscrits
                             </p>
                         </div>
                     </div>

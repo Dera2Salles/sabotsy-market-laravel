@@ -5,7 +5,6 @@ import { Textarea } from '@/components/ui/textarea';
 import { Head, useForm } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
 import toast from 'react-hot-toast';
-import { ProducerHeader } from './components/ProducerHeader';
 import { ProducerSidebar } from './components/ProducerSidebar';
 
 interface Category {
@@ -31,36 +30,34 @@ export default function CreateProduct({ categories }: CreateProductProps) {
         e.preventDefault();
         post(route('producer.products.store'), {
             onSuccess: () => {
-                toast.success('Product created successfully!');
+                toast.success('Produit créé avec succès !');
             },
             onError: () => {
-                toast.error('Failed to create product. Please check the form.');
+                toast.error('Échec de la création du produit. Veuillez vérifier le formulaire.');
             },
         });
     };
 
     return (
         <div className="flex h-screen overflow-hidden">
-            <Head title="Create Product" />
+            <Head title="Créer un Produit" />
             <ProducerSidebar />
             <div className="flex-1 overflow-y-auto overflow-x-hidden">
-                <ProducerHeader />
                 <div className="flex min-h-screen flex-1 flex-col gap-8 bg-gray-50/50 p-6 dark:bg-zinc-900/50 md:p-8">
                     <div className="mx-auto w-full max-w-2xl rounded-2xl border border-zinc-100 bg-white p-8 shadow-lg dark:border-zinc-800 dark:bg-zinc-900">
                         <div className="mb-8">
                             <h1 className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-3xl font-bold text-transparent">
-                                Add New Product
+                                Ajouter un Nouveau Produit
                             </h1>
                             <p className="mt-2 text-gray-500 dark:text-gray-400">
-                                Fill in the details to list your product on the
-                                marketplace.
+                                Remplissez les détails pour lister votre produit sur le marché.
                             </p>
                         </div>
 
                         <form onSubmit={submit} className="space-y-6">
                             <div className="space-y-2">
                                 <Label htmlFor="product_name">
-                                    Product Name
+                                    Nom du Produit
                                 </Label>
                                 <Input
                                     id="product_name"
@@ -69,7 +66,7 @@ export default function CreateProduct({ categories }: CreateProductProps) {
                                         setData('product_name', e.target.value)
                                     }
                                     className="bg-gray-50 dark:bg-zinc-800/50"
-                                    placeholder="e.g. Organic Strawberries"
+                                    placeholder="ex: Fraises Biologiques"
                                 />
                                 {errors.product_name && (
                                     <p className="text-sm text-red-500">
@@ -92,7 +89,7 @@ export default function CreateProduct({ categories }: CreateProductProps) {
                                         )
                                     }
                                     className="min-h-[120px] bg-gray-50 dark:bg-zinc-800/50"
-                                    placeholder="Describe your product..."
+                                    placeholder="Décrivez votre produit..."
                                 />
                                 {errors.product_description && (
                                     <p className="text-sm text-red-500">
@@ -104,7 +101,7 @@ export default function CreateProduct({ categories }: CreateProductProps) {
                             <div className="grid grid-cols-2 gap-4">
                                 <div className="space-y-2">
                                     <Label htmlFor="unit_price">
-                                        Price ($)
+                                        Prix (MGA)
                                     </Label>
                                     <Input
                                         id="unit_price"
@@ -129,7 +126,7 @@ export default function CreateProduct({ categories }: CreateProductProps) {
 
                                 <div className="space-y-2">
                                     <Label htmlFor="unit_stock">
-                                        Stock Quantity
+                                        Quantité en Stock
                                     </Label>
                                     <Input
                                         id="unit_stock"
@@ -142,7 +139,7 @@ export default function CreateProduct({ categories }: CreateProductProps) {
                                             )
                                         }
                                         className="bg-gray-50 dark:bg-zinc-800/50"
-                                        placeholder="Available stock"
+                                        placeholder="Stock disponible"
                                     />
                                     {errors.unit_stock && (
                                         <p className="text-sm text-red-500">
@@ -153,7 +150,7 @@ export default function CreateProduct({ categories }: CreateProductProps) {
                             </div>
 
                             <div className="space-y-2">
-                                <Label htmlFor="category_id">Category</Label>
+                                <Label htmlFor="category_id">Catégorie</Label>
                                 <select
                                     id="category_id"
                                     value={data.category_id}
@@ -163,7 +160,7 @@ export default function CreateProduct({ categories }: CreateProductProps) {
                                     className="flex h-10 w-full rounded-md border border-input bg-gray-50 px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-zinc-800/50"
                                 >
                                     <option value="" disabled>
-                                        Select a category
+                                        Sélectionnez une catégorie
                                     </option>
                                     {categories.map((cat) => (
                                         <option key={cat.id} value={cat.id}>
@@ -179,7 +176,7 @@ export default function CreateProduct({ categories }: CreateProductProps) {
                             </div>
 
                             <div className="space-y-2">
-                                <Label htmlFor="image">Product Image</Label>
+                                <Label htmlFor="image">Image du Produit</Label>
                                 <Input
                                     id="image"
                                     type="file"
@@ -206,14 +203,14 @@ export default function CreateProduct({ categories }: CreateProductProps) {
                                     variant="outline"
                                     onClick={() => window.history.back()}
                                 >
-                                    Cancel
+                                    Annuler
                                 </Button>
                                 <Button
                                     type="submit"
                                     disabled={processing}
                                     className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-lg shadow-emerald-500/20 hover:from-emerald-700 hover:to-teal-700"
                                 >
-                                    Create Product
+                                    Créer le Produit
                                 </Button>
                             </div>
                         </form>

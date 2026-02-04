@@ -30,20 +30,19 @@ const getProductAge = (createdAt: string) => {
     const diffMs = now.getTime() - created.getTime();
     const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
     
-    if (diffDays === 0) return 'Today';
-    if (diffDays === 1) return '1 day ago';
-    if (diffDays < 7) return `${diffDays} days ago`;
-    if (diffDays < 30) return `${Math.floor(diffDays / 7)} weeks ago`;
-    if (diffDays < 365) return `${Math.floor(diffDays / 30)} months ago`;
-    return `${Math.floor(diffDays / 365)} years ago`;
+    if (diffDays === 0) return "Aujourd'hui";
+    if (diffDays === 1) return 'il y a un jour';
+    if (diffDays < 7) return `il y a ${diffDays} jours`;
+    if (diffDays < 30) return `il y a ${Math.floor(diffDays / 7)} semaines`;
+    if (diffDays < 365) return `il y a ${Math.floor(diffDays / 30)} mois`;
+    return `il y a ${Math.floor(diffDays / 365)} ans`;
 };
 
 // Formatting currency
 const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-    }).format(amount);
+    return new Intl.NumberFormat('fr-FR', {
+        style: 'decimal',
+    }).format(amount) + ' MGA';
 };
 
 export const columns: ColumnDef<Product>[] = [
@@ -72,7 +71,7 @@ export const columns: ColumnDef<Product>[] = [
                     onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
                     className="hover:bg-transparent pl-0"
                 >
-                    Product Name
+                    Nom du Produit
                     <ArrowUpDown className="ml-2 h-4 w-4" />
                 </Button>
             );
@@ -81,7 +80,7 @@ export const columns: ColumnDef<Product>[] = [
     },
     {
         accessorKey: 'unit_price',
-        header: 'Price',
+        header: 'Prix',
         cell: ({ row }) => {
             const amount = parseFloat(row.getValue('unit_price'));
             return <div className="font-medium">{formatCurrency(amount)}</div>;
@@ -94,7 +93,7 @@ export const columns: ColumnDef<Product>[] = [
             const stock = parseInt(row.getValue('unit_stock'));
             return (
                 <Badge variant={stock > 0 ? "outline" : "destructive"} className={`${stock > 0 ? "text-green-600 border-green-200 bg-green-50" : ""}`}>
-                    {stock} Units
+                    {stock} Unités
                 </Badge>
             );
         },
@@ -119,18 +118,18 @@ export const columns: ColumnDef<Product>[] = [
                             className="text-amber-600 focus:text-amber-700 cursor-pointer"
                         >
                             <Edit className="mr-2 h-4 w-4" />
-                            Edit Product
+                            Modifier le Produit
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem
                              onClick={() => {
-                                if (confirm('Are you sure you want to delete this product?')) {
+                                if (confirm('Êtes-vous sûr de vouloir supprimer ce produit ?')) {
                                     router.delete(route('producer.products.destroy', product.id), {
                                         onSuccess: () => {
-                                            toast.success('Product deleted successfully!');
+                                            toast.success('Produit supprimé avec succès !');
                                         },
                                         onError: () => {
-                                            toast.error('Failed to delete product.');
+                                            toast.error('Échec de la suppression du produit.');
                                         },
                                     });
                                 }
@@ -138,7 +137,7 @@ export const columns: ColumnDef<Product>[] = [
                             className="text-red-600 focus:text-red-700 cursor-pointer"
                         >
                             <Trash2 className="mr-2 h-4 w-4" />
-                            Delete Product
+                            Supprimer le Produit
                         </DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>

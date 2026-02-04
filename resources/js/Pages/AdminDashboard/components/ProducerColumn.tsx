@@ -23,10 +23,10 @@ const handleApprovalToggle = (producerId: number, currentStatus: boolean) => {
         { is_approved: !currentStatus },
         {
             onSuccess: () => {
-                toast.success(`Producer ${!currentStatus ? 'approved' : 'unapproved'} successfully!`);
+                toast.success(`Producteur ${!currentStatus ? 'approuvé' : 'désapprouvé'} avec succès !`);
             },
             onError: () => {
-                toast.error('Failed to update producer approval status.');
+                toast.error('Échec de la mise à jour du statut d\'approbation du producteur.');
             },
         }
     );
@@ -44,7 +44,7 @@ export const columns: ColumnDef<Producer>[] = [
                     }
                     className="hover:bg-transparent pl-0"
                 >
-                    Name
+                    Nom
                     <ArrowUpDown className="ml-2 h-4 w-4" />
                 </Button>
             );
@@ -64,7 +64,7 @@ export const columns: ColumnDef<Producer>[] = [
                     }
                     className="hover:bg-transparent pl-0"
                 >
-                    Email
+                    E-mail
                     <ArrowUpDown className="ml-2 h-4 w-4" />
                 </Button>
             );
@@ -75,13 +75,13 @@ export const columns: ColumnDef<Producer>[] = [
     },
     {
         accessorKey: 'products_count',
-        header: '# Products',
+        header: '# Produits',
         cell: ({ row }) => {
             const count = row.getValue('products_count') as number;
             return (
                 <div className="text-center">
                     <Badge variant="outline" className="font-semibold">
-                        {count} products
+                        {count} produits
                     </Badge>
                 </div>
             );
@@ -89,7 +89,7 @@ export const columns: ColumnDef<Producer>[] = [
     },
     {
         accessorKey: 'is_approved',
-        header: 'Status',
+        header: 'Statut',
         cell: ({ row }) => {
             const isApproved = row.getValue('is_approved') as boolean;
             return (
@@ -97,12 +97,12 @@ export const columns: ColumnDef<Producer>[] = [
                     {isApproved ? (
                         <Badge className="bg-emerald-100 text-emerald-800 border-emerald-200">
                             <CheckCircle2 className="mr-1 h-3 w-3" />
-                            Approved
+                            Approuvé
                         </Badge>
                     ) : (
                         <Badge className="bg-yellow-100 text-yellow-800 border-yellow-200">
                             <XCircle className="mr-1 h-3 w-3" />
-                            Pending
+                            En attente
                         </Badge>
                     )}
                 </div>
@@ -111,12 +111,12 @@ export const columns: ColumnDef<Producer>[] = [
     },
     {
         accessorKey: 'created_at',
-        header: 'Joined',
+        header: 'Inscrit le',
         cell: ({ row }) => {
             const date = new Date(row.getValue('created_at'));
             return (
                 <div className="text-sm text-gray-600 dark:text-gray-400">
-                    {date.toLocaleDateString('en-US', {
+                    {date.toLocaleDateString('fr-FR', {
                         month: 'short',
                         day: 'numeric',
                         year: 'numeric',
@@ -127,7 +127,7 @@ export const columns: ColumnDef<Producer>[] = [
     },
     {
         id: 'actions',
-        header: 'Approve',
+        header: 'Approuver',
         cell: ({ row }) => {
             const producer = row.original;
             return (

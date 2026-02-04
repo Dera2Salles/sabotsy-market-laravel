@@ -18,7 +18,7 @@ export const columns: ColumnDef<ProductEntity>[] = [
                         column.toggleSorting(column.getIsSorted() === 'asc')
                     }
                 >
-                    Picture
+                    Image
                 </Button>
             );
         },
@@ -42,7 +42,7 @@ export const columns: ColumnDef<ProductEntity>[] = [
                         column.toggleSorting(column.getIsSorted() === 'asc')
                     }
                 >
-                    Name
+                    Nom
                 </Button>
             );
         },
@@ -60,7 +60,7 @@ export const columns: ColumnDef<ProductEntity>[] = [
                         column.toggleSorting(column.getIsSorted() === 'asc')
                     }
                 >
-                    Category
+                    Catégorie
                 </Button>
             );
         },
@@ -80,7 +80,7 @@ export const columns: ColumnDef<ProductEntity>[] = [
                         column.toggleSorting(column.getIsSorted() === 'asc')
                     }
                 >
-                    Unit
+                    Unité
                 </Button>
             );
         },
@@ -90,7 +90,7 @@ export const columns: ColumnDef<ProductEntity>[] = [
     },
     {
         accessorKey: 'price',
-        header: () => <div className="text-center">Price</div>,
+        header: () => <div className="text-center">Prix</div>,
         cell: ({ row }) => {
             const amount = parseFloat(row.getValue('price'));
 

@@ -16,16 +16,16 @@ export default function ProductManagement({ products }: { products: any }) {
                         <div className="flex items-center justify-between">
                             <div>
                                 <h1 className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
-                                    My Products
+                                    Mes Produits
                                 </h1>
                                 <p className="mt-2 text-gray-500 dark:text-gray-400">
-                                    Manage your product inventory and listings
+                                    Gérez votre inventaire de produits et vos annonces
                                 </p>
                             </div>
                             <Link href={route('producer.products.create')}>
                                 <Button className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-lg shadow-emerald-500/20 hover:from-emerald-700 hover:to-teal-700">
                                     <Plus className="mr-2 h-4 w-4" />
-                                    Add Product
+                                    Ajouter un Produit
                                 </Button>
                             </Link>
                         </div>

@@ -59,14 +59,14 @@ export const ProductListOnCart = () => {
                                         <div className="rounded-2xl bg-emerald-600/10 p-3 dark:bg-emerald-500/10">
                                             <MdShoppingCart className="font-bold text-emerald-600 dark:text-emerald-400" />
                                         </div>
-                                        Your Cart
+                                        Votre Panier
                                     </CardTitle>
                                     <p className="font-medium text-gray-500 dark:text-gray-400">
-                                        You have{' '}
+                                        Vous avez{' '}
                                         <span className="font-bold text-emerald-600 dark:text-emerald-400">
                                             {totalItems}
                                         </span>{' '}
-                                        items in your selection
+                                        articles dans votre sélection
                                     </p>
                                 </div>
                                 <button
@@ -125,11 +125,11 @@ export const ProductListOnCart = () => {
                                         <MdShoppingCart className="relative animate-pulse text-9xl text-gray-200 dark:text-zinc-800" />
                                     </div>
                                     <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
-                                        Your cart is empty
+                                        Votre panier est vide
                                     </h3>
                                     <p className="max-w-[250px] text-gray-500 dark:text-gray-400">
-                                        Explore our market and find amazing
-                                        products to fill your cart!
+                                        Explorez notre marché et trouvez des produits
+                                        incroyables pour remplir votre panier !
                                     </p>
                                 </motion.div>
                             )}
@@ -141,7 +141,7 @@ export const ProductListOnCart = () => {
                                     <div className="flex w-full flex-col items-center justify-between gap-6 sm:flex-row">
                                         <div className="space-y-1 text-center sm:text-left">
                                             <p className="text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">
-                                                Total Amount
+                                                Montant Total
                                             </p>
                                             <p className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-4xl font-black text-transparent">
                                                 {totalPrice} MGA
@@ -153,7 +153,7 @@ export const ProductListOnCart = () => {
                                             className="group relative flex w-full items-center justify-center gap-3 rounded-[1.5rem] bg-gradient-to-r from-emerald-600 to-teal-600 px-10 py-8 text-xl font-black text-white shadow-[0_20px_40px_-12px_rgba(16,185,129,0.4)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_48px_-12px_rgba(16,185,129,0.6)] active:scale-95 sm:w-auto"
                                         >
                                             <MdPayment className="text-2xl group-hover:animate-bounce" />
-                                            <span>Purchase</span>
+                                            <span>Acheter</span>
                                             <div className="absolute inset-0 rounded-[1.5rem] bg-white/20 opacity-0 transition-opacity group-hover:opacity-100" />
                                         </Button>
                                     </div>

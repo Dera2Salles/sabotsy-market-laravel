@@ -27,10 +27,10 @@ export const MainDashboard = ({ stats, products, recentUsers }: MainDashboardPro
         
         <div className="relative z-10 space-y-2">
             <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-white">
-              Dashboard Overview
+              Aperçu du Tableau de Bord
             </h1>
             <p className="text-zinc-400 text-lg md:text-xl max-w-2xl">
-              Welcome back! Here's your daily store performance summary and key metrics.
+              Bon retour ! Voici le résumé quotidien des performances de votre boutique et les indicateurs clés.
             </p>
         </div>
       </div>
@@ -38,34 +38,34 @@ export const MainDashboard = ({ stats, products, recentUsers }: MainDashboardPro
       {/* Stats Grid */}
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         <StatCard
-          title="Total Products"
+          title="Total des Produits"
           value={stats.totalProducts}
           icon={<Package className="h-6 w-6 text-emerald-500" />}
-          description="Active items in store"
+          description="Articles actifs en boutique"
           trend="up"
           variant="emerald"
         />
         <StatCard
-          title="Total Orders"
+          title="Total des Commandes"
           value={stats.totalOrders}
           icon={<ShoppingCart className="h-6 w-6 text-amber-500" />}
-          description="Orders this month"
+          description="Commandes ce mois-ci"
           trend="up"
           variant="amber"
         />
         <StatCard
-          title="Total Users"
+          title="Total des Utilisateurs"
           value={stats.totalUsers}
           icon={<Users className="h-6 w-6 text-teal-500" />}
-          description={`${stats.totalCustomers} Customers, ${stats.totalProducers} Producers`}
+          description={`${stats.totalCustomers} Clients, ${stats.totalProducers} Producteurs`}
           trend="up"
           variant="teal"
         />
         <StatCard
-          title="Total Revenue"
+          title="Revenu Total"
           value="$45,231" // Placeholder
           icon={<TrendingUp className="h-6 w-6 text-blue-500" />}
-          description="+12% from last month"
+          description="+12% depuis le mois dernier"
           trend="up"
           variant="blue"
         />
@@ -77,8 +77,8 @@ export const MainDashboard = ({ stats, products, recentUsers }: MainDashboardPro
           <div className="rounded-3xl border border-zinc-200 bg-white p-8 shadow-xl shadow-zinc-200/50 dark:border-zinc-800 dark:bg-zinc-900/50 dark:shadow-none">
              <div className="mb-8 flex items-center justify-between">
                 <div>
-                    <h3 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">Recent Products</h3>
-                    <p className="text-sm text-zinc-500 dark:text-zinc-400">Latest additions to your catalog</p>
+                    <h3 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">Produits Récents</h3>
+                    <p className="text-sm text-zinc-500 dark:text-zinc-400">Derniers ajouts à votre catalogue</p>
                 </div>
              </div>
              <DataTable columns={columns} data={products} />
@@ -87,11 +87,11 @@ export const MainDashboard = ({ stats, products, recentUsers }: MainDashboardPro
         
         <div className="space-y-8">
           <div className="p-6 rounded-3xl bg-white border border-zinc-200 shadow-xl shadow-zinc-200/50 dark:bg-zinc-900/50 dark:border-zinc-800 dark:shadow-none">
-              <h4 className="mb-6 text-lg font-bold text-zinc-900 dark:text-zinc-100">Sales Overview</h4>
+              <h4 className="mb-6 text-lg font-bold text-zinc-900 dark:text-zinc-100">Aperçu des Ventes</h4>
               <BarChartGraph />
           </div>
           <div className="p-6 rounded-3xl bg-white border border-zinc-200 shadow-xl shadow-zinc-200/50 dark:bg-zinc-900/50 dark:border-zinc-800 dark:shadow-none">
-              <h4 className="mb-6 text-lg font-bold text-zinc-900 dark:text-zinc-100">Category Distribution</h4>
+              <h4 className="mb-6 text-lg font-bold text-zinc-900 dark:text-zinc-100">Distribution par Catégorie</h4>
               <PieChartGraph />
           </div>
         </div>

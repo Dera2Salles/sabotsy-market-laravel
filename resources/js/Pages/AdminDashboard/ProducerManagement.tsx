@@ -11,10 +11,10 @@ export default function ProducerManagement({ producers }: { producers: any }) {
                     <div className="flex items-center justify-between">
                         <div>
                             <h1 className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
-                                Producer Management
+                                Gestion des Producteurs
                             </h1>
                             <p className="mt-2 text-gray-500 dark:text-gray-400">
-                                Manage and monitor all registered producers
+                                Gérer et surveiller tous les producteurs inscrits
                             </p>
                         </div>
                     </div>

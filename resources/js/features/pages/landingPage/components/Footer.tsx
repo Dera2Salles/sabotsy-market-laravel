@@ -1,5 +1,5 @@
 import { MountainIcon } from 'lucide-react';
-import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
+import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
 
 export const Footer = () => {
   return (
@@ -11,33 +11,32 @@ export const Footer = () => {
             <span className="text-2xl font-bold">SabotsyMarket</span>
           </a>
           <p className="text-gray-300 text-sm">
-            Connecting local producers with consumers. Fresh, local, and
-            seasonal.
+            Connecter les producteurs locaux aux consommateurs. Frais, local et de saison.
           </p>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm">
           <div className="grid gap-2">
-            <h3 className="font-semibold text-lg mb-2">Quick Links</h3>
+            <h3 className="font-semibold text-lg mb-2">Liens Rapides</h3>
             <a className="hover:underline" href="#">
-              Home
+              Accueil
             </a>
             <a className="hover:underline" href="#">
-              Products
+              Produits
             </a>
             <a className="hover:underline" href="#">
-              About Us
+              À Propos
             </a>
             <a className="hover:underline" href="#">
               Contact
             </a>
           </div>
           <div className="grid gap-2">
-            <h3 className="font-semibold text-lg mb-2">Legal</h3>
+            <h3 className="font-semibold text-lg mb-2">Légal</h3>
             <a className="hover:underline" href="#">
-              Terms of Use
+              Conditions d'Utilisation
             </a>
             <a className="hover:underline" href="#">
-              Privacy Policy
+              Politique de Confidentialité
             </a>
           </div>
         </div>
@@ -54,7 +53,7 @@ export const Footer = () => {
             </a>
           </div>
           <p className="text-gray-300 text-sm mt-4">
-            © {new Date().getFullYear()} SabotsyMarket. All rights reserved.
+            © {new Date().getFullYear()} SabotsyMarket. Tous droits réservés.
           </p>
         </div>
       </div>

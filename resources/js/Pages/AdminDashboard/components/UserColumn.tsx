@@ -15,7 +15,7 @@ export const columns: ColumnDef<any>[] = [
                         column.toggleSorting(column.getIsSorted() === 'asc')
                     }
                 >
-                    Name
+                    Nom
                 </Button>
             );
         },
@@ -33,7 +33,7 @@ export const columns: ColumnDef<any>[] = [
                         column.toggleSorting(column.getIsSorted() === 'asc')
                     }
                 >
-                    Email
+                    E-mail
                 </Button>
             );
         },
@@ -43,19 +43,19 @@ export const columns: ColumnDef<any>[] = [
     },
     {
         accessorKey: 'role',
-        header: 'Role',
+        header: 'Rôle',
         cell: ({ row }) => {
             const role = row.getValue('role');
-            let roleName = 'Customer';
-            if (role === 1) roleName = 'Admin'; 
-            if (role === 2) roleName = 'Producer';
+            let roleName = 'Client';
+            if (role === 1) roleName = 'Administrateur'; 
+            if (role === 2) roleName = 'Producteur';
             // Adjust mapping based on User model constants if known, or just display value
             return <div className="text-center">{roleName} ({role as number})</div>;
         },
     },
     {
         accessorKey: 'created_at',
-        header: 'Joined',
+        header: 'Inscrit le',
         cell: ({ row }) => {
             return <div className="text-center">{new Date(row.getValue('created_at')).toLocaleDateString()}</div>;
         },
@@ -66,7 +66,7 @@ export const columns: ColumnDef<any>[] = [
         enableHiding: false,
         cell: ({ row }) => {
              // Placeholder for actions
-            return <Button variant="outline" size="sm">Edit</Button>;
+            return <Button variant="outline" size="sm">Modifier</Button>;
         },
     },
 ];

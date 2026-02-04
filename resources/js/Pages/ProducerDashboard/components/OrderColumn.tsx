@@ -25,11 +25,11 @@ export type Order = {
 };
 
 const STATUS_OPTIONS = [
-    { value: 'pending', label: 'Pending', color: 'bg-yellow-100 text-yellow-800 border-yellow-200' },
-    { value: 'processing', label: 'Processing', color: 'bg-blue-100 text-blue-800 border-blue-200' },
-    { value: 'shipped', label: 'Shipped', color: 'bg-purple-100 text-purple-800 border-purple-200' },
-    { value: 'delivered', label: 'Delivered', color: 'bg-emerald-100 text-emerald-800 border-emerald-200' },
-    { value: 'cancelled', label: 'Cancelled', color: 'bg-red-100 text-red-800 border-red-200' },
+    { value: 'pending', label: 'En attente', color: 'bg-yellow-100 text-yellow-800 border-yellow-200' },
+    { value: 'processing', label: 'En cours', color: 'bg-blue-100 text-blue-800 border-blue-200' },
+    { value: 'shipped', label: 'Expédié', color: 'bg-purple-100 text-purple-800 border-purple-200' },
+    { value: 'delivered', label: 'Livré', color: 'bg-emerald-100 text-emerald-800 border-emerald-200' },
+    { value: 'cancelled', label: 'Annulé', color: 'bg-red-100 text-red-800 border-red-200' },
 ];
 
 const getStatusColor = (status: string) => {
@@ -43,10 +43,10 @@ const handleStatusUpdate = (orderId: number, newStatus: string) => {
         { status: newStatus },
         {
             onSuccess: () => {
-                toast.success(`Order status updated to ${newStatus}!`);
+                toast.success(`Statut de la commande mis à jour !`);
             },
             onError: () => {
-                toast.error('Failed to update order status.');
+                toast.error('Échec de la mise à jour du statut de la commande.');
             },
         }
     );
@@ -55,7 +55,7 @@ const handleStatusUpdate = (orderId: number, newStatus: string) => {
 export const columns: ColumnDef<Order>[] = [
     {
         accessorKey: 'id',
-        header: 'Order ID',
+        header: 'ID Commande',
         cell: ({ row }) => (
             <div className="font-bold text-gray-900 dark:text-gray-100">
                 #{row.getValue('id')}
@@ -64,7 +64,7 @@ export const columns: ColumnDef<Order>[] = [
     },
     {
         accessorKey: 'product',
-        header: 'Product',
+        header: 'Produit',
         cell: ({ row }) => {
             const product = row.original.product;
             return (
@@ -91,16 +91,16 @@ export const columns: ColumnDef<Order>[] = [
     },
     {
         accessorKey: 'quantity',
-        header: 'Quantity',
+        header: 'Quantité',
         cell: ({ row }) => (
             <div className="text-center font-medium">
-                {row.getValue('quantity')} units
+                {row.getValue('quantity')} unités
             </div>
         ),
     },
     {
         accessorKey: 'total_price',
-        header: 'Total Price',
+        header: 'Prix Total',
         cell: ({ row }) => {
             const amount = parseFloat(row.getValue('total_price'));
             return (
@@ -112,7 +112,7 @@ export const columns: ColumnDef<Order>[] = [
     },
     {
         accessorKey: 'status',
-        header: 'Status',
+        header: 'Statut',
         cell: ({ row }) => {
             const status = row.getValue('status') as string || 'pending';
             const orderId = row.original.id;
@@ -141,12 +141,12 @@ export const columns: ColumnDef<Order>[] = [
     },
     {
         accessorKey: 'created_at',
-        header: 'Order Date',
+        header: 'Date de Commande',
         cell: ({ row }) => {
             const date = new Date(row.getValue('created_at'));
             return (
                 <div className="text-sm text-gray-600 dark:text-gray-400">
-                    {date.toLocaleDateString('en-US', {
+                    {date.toLocaleDateString('fr-FR', {
                         month: 'short',
                         day: 'numeric',
                         year: 'numeric',
