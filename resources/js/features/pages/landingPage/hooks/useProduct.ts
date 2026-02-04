@@ -41,7 +41,7 @@ export const useProduct = () => {
         category: filterCategory,
     });
 
-    const { auth } = usePage().props as any;
+    const { auth, categories } = usePage().props as any;
 
     const confirmOrder = async () => {
         if (!auth.user) {
@@ -145,5 +145,6 @@ export const useProduct = () => {
         setIsPaymentModalOpen,
         isProcessingPayment,
         processPayment,
+        categories,
     };
 };

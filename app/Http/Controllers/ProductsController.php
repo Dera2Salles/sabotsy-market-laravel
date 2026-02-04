@@ -13,6 +13,7 @@ class ProductsController extends Controller
     public function index()
     {
         $products = Product::with('category')->paginate(5);
+        $categories = \App\Models\Category::all();
 
         $products->getCollection()->transform(function ($product) {
             $product->image = '/storage/' . $product->image;
@@ -21,6 +22,7 @@ class ProductsController extends Controller
 
         return Inertia::render('LandingPage', [
             'products' => $products,
+            'categories' => $categories,
         ]);
     }
 
