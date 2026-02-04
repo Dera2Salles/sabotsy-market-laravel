@@ -17,23 +17,28 @@ interface ProducerMainDashboardProps {
 
 export const ProducerMainDashboard = ({ stats, products }: ProducerMainDashboardProps) => {
   return (
-    <main className="flex flex-1 flex-col gap-8 p-6 md:p-8 bg-gray-50/50 dark:bg-zinc-900/50 min-h-screen">
+    <main className="flex flex-1 flex-col gap-8 p-6 md:p-10 bg-gray-50 dark:bg-zinc-950/50 min-h-screen">
       {/* Welcome Section */}
-      <div className="animate-slide-up flex items-center justify-between">
-        <div className="space-y-1">
-          <h1 className="text-4xl font-bold tracking-tight bg-gradient-to-r from-green-600 to-teal-600 bg-clip-text text-transparent">
-            Producer Overview
-          </h1>
-          <p className="text-gray-500 dark:text-gray-400 text-lg">
-            Manage your products, track orders, and grow your business.
-          </p>
+      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-zinc-900 to-zinc-950 p-8 md:p-12 shadow-2xl">
+        <div className="absolute top-0 right-0 -mr-20 -mt-20 h-[300px] w-[300px] rounded-full bg-emerald-500/10 blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 -ml-20 -mb-20 h-[200px] w-[200px] rounded-full bg-teal-500/10 blur-3xl"></div>
+
+        <div className="relative z-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div className="space-y-2">
+                <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-white">
+                Producer Overview
+                </h1>
+                <p className="text-zinc-400 text-lg md:text-xl max-w-2xl">
+                Manage your products, track orders, and grow your business with Sabotsy.
+                </p>
+            </div>
+            <Link href={route('producer.products.create')}>
+                <Button className="w-full md:w-auto bg-emerald-500 hover:bg-emerald-600 text-white font-bold shadow-lg shadow-emerald-500/20 transition-all duration-300 rounded-xl h-12 px-8 text-base">
+                    <Plus className="mr-2 h-5 w-5" />
+                    Add Product
+                </Button>
+            </Link>
         </div>
-        <Link href={route('producer.products.create')}>
-             <Button className="bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 text-white shadow-lg shadow-green-500/20 hover:shadow-xl hover:shadow-green-500/30 transition-all duration-300 rounded-xl h-11 px-6">
-                <Plus className="mr-2 h-4 w-4" />
-                Add Product
-             </Button>
-        </Link>
       </div>
 
       {/* Stats Grid */}
@@ -41,7 +46,7 @@ export const ProducerMainDashboard = ({ stats, products }: ProducerMainDashboard
         <ProducerStatCard
           title="My Products"
           value={stats.totalProducts}
-          icon={<Package className="h-5 w-5" />}
+          icon={<Package className="h-6 w-6 text-emerald-500" />}
           description="+3 new this month"
           trend="up"
           variant="green"
@@ -49,7 +54,7 @@ export const ProducerMainDashboard = ({ stats, products }: ProducerMainDashboard
         <ProducerStatCard
           title="Total Orders"
           value={stats.totalOrders}
-          icon={<ShoppingCart className="h-5 w-5" />}
+          icon={<ShoppingCart className="h-6 w-6 text-blue-500" />}
           description="+12% from last month"
           trend="up"
           variant="blue"
@@ -57,7 +62,7 @@ export const ProducerMainDashboard = ({ stats, products }: ProducerMainDashboard
         <ProducerStatCard
           title="Revenue"
           value={`$${stats.totalRevenue.toLocaleString()}`}
-          icon={<DollarSign className="h-5 w-5" />}
+          icon={<DollarSign className="h-6 w-6 text-purple-500" />}
           description="Total earnings"
           trend="up"
           variant="purple"
@@ -65,7 +70,7 @@ export const ProducerMainDashboard = ({ stats, products }: ProducerMainDashboard
         <ProducerStatCard
           title="Active Products"
           value={stats.activeProducts}
-          icon={<TrendingUp className="h-5 w-5" />}
+          icon={<TrendingUp className="h-6 w-6 text-orange-500" />}
           description="In stock and selling"
           trend="up"
           variant="orange"
@@ -74,9 +79,12 @@ export const ProducerMainDashboard = ({ stats, products }: ProducerMainDashboard
 
       {/* Recent Products Section */}
       <div className="grid gap-8 lg:grid-cols-1">
-        <div className="animate-scale-in bg-white/50 dark:bg-zinc-900/50 rounded-2xl p-6 shadow-sm backdrop-blur-sm border border-gray-100 dark:border-zinc-800">
-          <div className="flex items-center justify-between mb-6">
-               <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200">Recent Products</h3>
+        <div className="rounded-3xl border border-zinc-200 bg-white p-8 shadow-xl shadow-zinc-200/50 dark:border-zinc-800 dark:bg-zinc-900/50 dark:shadow-none">
+          <div className="flex items-center justify-between mb-8">
+               <div>
+                    <h3 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">Recent Products</h3>
+                    <p className="text-sm text-zinc-500 dark:text-zinc-400">Manage your latest inventory items</p>
+               </div>
           </div>
           <DataTable columns={columns} data={products} />
         </div>

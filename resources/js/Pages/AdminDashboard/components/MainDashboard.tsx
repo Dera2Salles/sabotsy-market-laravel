@@ -19,15 +19,20 @@ interface MainDashboardProps {
 
 export const MainDashboard = ({ stats, products, recentUsers }: MainDashboardProps) => {
   return (
-    <main className="flex flex-1 flex-col gap-8 p-6 md:p-8 bg-gray-50/50 dark:bg-zinc-900/50 min-h-screen">
+    <main className="flex flex-1 flex-col gap-8 p-6 md:p-10 bg-gray-50 dark:bg-zinc-950/50 min-h-screen">
       {/* Welcome Section */}
-      <div className="animate-slide-up space-y-1">
-        <h1 className="text-4xl font-bold tracking-tight bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
-          Dashboard Overview
-        </h1>
-        <p className="text-gray-500 dark:text-gray-400 text-lg">
-          Welcome back! Here's your daily store performance summary.
-        </p>
+      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-zinc-900 to-zinc-950 p-8 md:p-12 shadow-2xl">
+        <div className="absolute top-0 right-0 -mr-20 -mt-20 h-[300px] w-[300px] rounded-full bg-emerald-500/10 blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 -ml-20 -mb-20 h-[200px] w-[200px] rounded-full bg-teal-500/10 blur-3xl"></div>
+        
+        <div className="relative z-10 space-y-2">
+            <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-white">
+              Dashboard Overview
+            </h1>
+            <p className="text-zinc-400 text-lg md:text-xl max-w-2xl">
+              Welcome back! Here's your daily store performance summary and key metrics.
+            </p>
+        </div>
       </div>
 
       {/* Stats Grid */}
@@ -35,7 +40,7 @@ export const MainDashboard = ({ stats, products, recentUsers }: MainDashboardPro
         <StatCard
           title="Total Products"
           value={stats.totalProducts}
-          icon={<Package className="h-5 w-5" />}
+          icon={<Package className="h-6 w-6 text-emerald-500" />}
           description="Active items in store"
           trend="up"
           variant="emerald"
@@ -43,7 +48,7 @@ export const MainDashboard = ({ stats, products, recentUsers }: MainDashboardPro
         <StatCard
           title="Total Orders"
           value={stats.totalOrders}
-          icon={<ShoppingCart className="h-5 w-5" />}
+          icon={<ShoppingCart className="h-6 w-6 text-amber-500" />}
           description="Orders this month"
           trend="up"
           variant="amber"
@@ -51,7 +56,7 @@ export const MainDashboard = ({ stats, products, recentUsers }: MainDashboardPro
         <StatCard
           title="Total Users"
           value={stats.totalUsers}
-          icon={<Users className="h-5 w-5" />}
+          icon={<Users className="h-6 w-6 text-teal-500" />}
           description={`${stats.totalCustomers} Customers, ${stats.totalProducers} Producers`}
           trend="up"
           variant="teal"
@@ -59,7 +64,7 @@ export const MainDashboard = ({ stats, products, recentUsers }: MainDashboardPro
         <StatCard
           title="Total Revenue"
           value="$45,231" // Placeholder
-          icon={<TrendingUp className="h-5 w-5" />}
+          icon={<TrendingUp className="h-6 w-6 text-blue-500" />}
           description="+12% from last month"
           trend="up"
           variant="blue"
@@ -68,18 +73,27 @@ export const MainDashboard = ({ stats, products, recentUsers }: MainDashboardPro
 
       {/* Charts and Table Section */}
       <div className="grid gap-8 lg:grid-cols-2 xl:grid-cols-3">
-        <div className="xl:col-span-2 space-y-8 animate-scale-in">
-          <div className="rounded-2xl border bg-white/50 dark:bg-zinc-900/50 p-6 shadow-sm backdrop-blur-sm">
-             <div className="mb-6 flex items-center justify-between">
-                <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200">Recent Products</h3>
+        <div className="xl:col-span-2 space-y-8">
+          <div className="rounded-3xl border border-zinc-200 bg-white p-8 shadow-xl shadow-zinc-200/50 dark:border-zinc-800 dark:bg-zinc-900/50 dark:shadow-none">
+             <div className="mb-8 flex items-center justify-between">
+                <div>
+                    <h3 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">Recent Products</h3>
+                    <p className="text-sm text-zinc-500 dark:text-zinc-400">Latest additions to your catalog</p>
+                </div>
              </div>
              <DataTable columns={columns} data={products} />
           </div>
         </div>
         
-        <div className="space-y-8 animate-scale-in" style={{ animationDelay: '0.1s' }}>
-          <BarChartGraph />
-          <PieChartGraph />
+        <div className="space-y-8">
+          <div className="p-6 rounded-3xl bg-white border border-zinc-200 shadow-xl shadow-zinc-200/50 dark:bg-zinc-900/50 dark:border-zinc-800 dark:shadow-none">
+              <h4 className="mb-6 text-lg font-bold text-zinc-900 dark:text-zinc-100">Sales Overview</h4>
+              <BarChartGraph />
+          </div>
+          <div className="p-6 rounded-3xl bg-white border border-zinc-200 shadow-xl shadow-zinc-200/50 dark:bg-zinc-900/50 dark:border-zinc-800 dark:shadow-none">
+              <h4 className="mb-6 text-lg font-bold text-zinc-900 dark:text-zinc-100">Category Distribution</h4>
+              <PieChartGraph />
+          </div>
         </div>
       </div>
     </main>

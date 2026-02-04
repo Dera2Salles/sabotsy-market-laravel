@@ -52,19 +52,19 @@ export function DataTable<TData, TValue>({
 
     return (
         <div className="space-y-4">
-            <div className="rounded-md border-0">
+            <div className="overflow-x-auto">
                 <Table>
-                    <TableHeader className="bg-gray-50/50 dark:bg-zinc-900/50">
+                    <TableHeader>
                         {table.getHeaderGroups().map((headerGroup) => (
                             <TableRow
                                 key={headerGroup.id}
-                                className="border-b border-gray-100 hover:bg-transparent dark:border-zinc-800"
+                                className="border-b border-zinc-100 hover:bg-transparent dark:border-zinc-800/50"
                             >
                                 {headerGroup.headers.map((header) => {
                                     return (
                                         <TableHead
                                             key={header.id}
-                                            className="h-10 text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400"
+                                            className="h-10 text-[10px] font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-500"
                                         >
                                             {header.isPlaceholder
                                                 ? null
@@ -87,12 +87,12 @@ export function DataTable<TData, TValue>({
                                     data-state={
                                         row.getIsSelected() && 'selected'
                                     }
-                                    className="border-b border-gray-50 transition-colors hover:bg-gray-50/50 dark:border-zinc-800/50 dark:hover:bg-zinc-800/50"
+                                    className="border-b border-zinc-50 transition-colors hover:bg-zinc-50/50 dark:border-zinc-800/50 dark:hover:bg-zinc-800/50"
                                 >
                                     {row.getVisibleCells().map((cell) => (
                                         <TableCell
                                             key={cell.id}
-                                            className="py-3 text-sm"
+                                            className="py-4 text-sm font-medium text-zinc-700 dark:text-zinc-300"
                                         >
                                             {flexRender(
                                                 cell.column.columnDef.cell,
@@ -109,7 +109,7 @@ export function DataTable<TData, TValue>({
                                     className="h-24 text-center"
                                 >
                                     <div className="flex flex-col items-center justify-center gap-2 text-muted-foreground">
-                                        <Inbox className="h-8 w-8 text-gray-300" />
+                                        <Inbox className="h-8 w-8 text-zinc-200" />
                                         <p>No results found.</p>
                                     </div>
                                 </TableCell>

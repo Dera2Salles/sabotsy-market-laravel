@@ -1,4 +1,3 @@
-import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
 import { ProducerHeader } from './components/ProducerHeader';
 import { ProducerMainDashboard } from './components/ProducerMainDashboard';
 import { ProducerSidebar } from './components/ProducerSidebar';
@@ -16,13 +15,13 @@ export const ProducerDashboardPage = ({
 }: ProducerDashboardProps) => {
     return (
         <ProducerDashboardProvider>
-            <SidebarProvider>
+            <div className="flex h-screen overflow-hidden">
                 <ProducerSidebar />
-                <SidebarInset className="overflow-y-auto">
+                <div className="flex-1 overflow-y-auto overflow-x-hidden">
                     <ProducerHeader />
                     <ProducerMainDashboard stats={stats} products={products} />
-                </SidebarInset>
-            </SidebarProvider>
+                </div>
+            </div>
         </ProducerDashboardProvider>
     );
 };

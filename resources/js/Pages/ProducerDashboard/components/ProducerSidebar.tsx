@@ -1,109 +1,166 @@
-'use client';
-
+import { cn } from '@/lib/utils';
+import { PageProps } from '@/types';
+import { Link, router, usePage } from '@inertiajs/react';
 import {
-    BarChart3,
-    HelpCircle,
+    BarChart,
+    ChevronRight,
+    LogOut,
     Package,
-    Settings,
-    ShoppingCart,
+    ShoppingCart
 } from 'lucide-react';
-import * as React from 'react';
+import { useState } from 'react';
 
-import { NavMain } from '@/components/nav-main';
-import { NavUser } from '@/components/nav-user';
-import {
-    Sidebar,
-    SidebarContent,
-    SidebarFooter,
-    SidebarHeader,
-    SidebarMenu,
-    SidebarMenuButton,
-    SidebarMenuItem,
-} from '@/components/ui/sidebar';
+const MENU_ITEMS = [
+    {
+        title: 'Dashboard',
+        icon: BarChart,
+        href: 'producer.dashboard',
+    },
+    {
+        title: 'My Products',
+        icon: Package,
+        href: 'producer.productsList',
+    },
+    {
+        title: 'Orders',
+        icon: ShoppingCart,
+        href: 'producer.orders',
+    },
+];
 
-import { usePage } from '@inertiajs/react';
-
-export function ProducerSidebar({
-    ...props
-}: React.ComponentProps<typeof Sidebar>) {
-    const { auth } = usePage().props as any;
-    const user = auth.user;
-
-    const sidebarData = {
-        user: {
-            name: user?.name || 'Producer User',
-            email: user?.email || 'producer@sabotsymarket.com',
-            avatar:
-                user?.avatar ||
-                `https://api.dicebear.com/7.x/avataaars/svg?seed=${user?.name || 'Producer'}`,
-        },
-        navMain: [
-            {
-                title: 'Dashboard',
-                url: '/producer/dashboard',
-                icon: BarChart3,
-            },
-            {
-                title: 'My Products',
-                url: 'productsList',
-                icon: Package,
-            },
-            {
-                title: 'Orders',
-                url: '/producer/orders',
-                icon: ShoppingCart,
-            },
-        ],
-        navSecondary: [
-            {
-                title: 'Settings',
-                url: '#',
-                icon: Settings,
-            },
-            {
-                title: 'Get Help',
-                url: '#',
-                icon: HelpCircle,
-            },
-        ],
-    };
+export function ProducerSidebar() {
+    const { url, props } = usePage<PageProps>();
+    const user = props.auth.user;
+    const [isCollapsed, setIsCollapsed] = useState(false);
 
     return (
-        <Sidebar collapsible="offcanvas" {...props}>
-            <SidebarHeader className="pb-4 pt-4">
-                <SidebarMenu>
-                    <SidebarMenuItem>
-                        <SidebarMenuButton
-                            asChild
-                            className="rounded-xl transition-colors hover:bg-emerald-50 data-[slot=sidebar-menu-button]:!p-2 group-data-[collapsible=icon]:!p-2 dark:hover:bg-emerald-900/10"
+        <aside
+            className={cn(
+                'relative sticky top-0 flex h-screen flex-col border-r border-white/10 bg-zinc-900 transition-all duration-300',
+                isCollapsed ? 'w-20' : 'w-72',
+            )}
+        >
+            {/* Collapse Toggle */}
+            <button
+                onClick={() => setIsCollapsed(!isCollapsed)}
+                className="absolute -right-3 top-10 z-50 rounded-full border border-white/20 bg-emerald-500 p-1.5 text-white shadow-lg transition-colors hover:bg-emerald-600"
+            >
+                <ChevronRight
+                    className={cn(
+                        'h-4 w-4 transition-transform',
+                        isCollapsed ? '' : 'rotate-180',
+                    )}
+                />
+            </button>
+
+            {/* Header / Logo */}
+            <div
+                className={cn(
+                    'flex items-center justify-center p-8 pb-12 transition-all border-b border-white/10',
+                    isCollapsed ? 'px-4' : 'px-8',
+                )}
+            >
+                {isCollapsed ? (
+                    <h1 className="font-bold text-2xl text-white">
+                        S
+                    </h1>
+                ) : (
+                    <div className="flex flex-col items-center gap-2">
+                        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-teal-500 text-white shadow-lg shadow-emerald-500/20 ring-1 ring-white/10">
+                            <span className="font-bold text-2xl tracking-tight">S</span>
+                        </div>
+                        <div className="flex flex-col items-center gap-0.5 leading-none">
+                            <span className="font-bold text-xl text-white tracking-tight">Sabotsy</span>
+                            <span className="text-[10px] font-bold text-emerald-500 tracking-widest uppercase">Producer</span>
+                        </div>
+                    </div>
+                )}
+            </div>
+
+            {/* Navigation */}
+            <nav className="flex-1 space-y-2 px-4 py-6">
+                {MENU_ITEMS.map((item) => {
+                    const isActive = route().current(item.href);
+                    return (
+                        <Link
+                            key={item.href}
+                            href={route(item.href)}
+                            className={cn(
+                                'group relative flex items-center rounded-xl px-4 py-3.5 transition-all duration-300',
+                                isActive
+                                    ? 'bg-emerald-500 text-white shadow-lg shadow-emerald-500/20'
+                                    : 'text-gray-400 hover:bg-white/5 hover:text-white',
+                                isCollapsed
+                                    ? 'justify-center'
+                                    : 'justify-between',
+                            )}
+                            title={isCollapsed ? item.title : undefined}
                         >
-                            <a href="#">
-                                <div className="flex flex-row items-center gap-3">
-                                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-green-600 to-teal-600 text-white shadow-lg shadow-green-500/20">
-                                        <span className="text-lg font-bold">
-                                            S
-                                        </span>
-                                    </div>
-                                    <div className="flex flex-col gap-0.5 leading-none">
-                                        <span className="text-lg font-bold text-emerald-950 dark:text-emerald-50">
-                                            Sabotsy
-                                        </span>
-                                        <span className="text-xs font-medium uppercase tracking-wider text-amber-500">
-                                            Producer
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
-                        </SidebarMenuButton>
-                    </SidebarMenuItem>
-                </SidebarMenu>
-            </SidebarHeader>
-            <SidebarContent className="px-2">
-                <NavMain items={sidebarData.navMain} />
-            </SidebarContent>
-            <SidebarFooter className="border-t border-gray-50 p-4 dark:border-zinc-800/50">
-                <NavUser user={sidebarData.user} />
-            </SidebarFooter>
-        </Sidebar>
+                            <div className="flex items-center gap-3">
+                                <item.icon
+                                    className={cn(
+                                        'h-5 w-5 flex-shrink-0 transition-colors',
+                                        isActive
+                                            ? 'text-white'
+                                            : 'group-hover:text-emerald-400',
+                                    )}
+                                />
+                                {!isCollapsed && (
+                                    <span className="whitespace-nowrap text-sm font-semibold">
+                                        {item.title}
+                                    </span>
+                                )}
+                            </div>
+                            {!isCollapsed && isActive && (
+                                <ChevronRight className="h-4 w-4 text-white" />
+                            )}
+                        </Link>
+                    );
+                })}
+            </nav>
+
+            {/* Bottom Profile / Logout */}
+            <div
+                className={cn(
+                    'mt-auto overflow-hidden border-t border-white/10 bg-black/20',
+                    isCollapsed ? 'p-4' : 'p-6',
+                )}
+            >
+                {!isCollapsed && (
+                    <div className="mb-6 flex items-center gap-3 px-2">
+                        <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-emerald-500/20 font-bold text-emerald-400">
+                            {user?.name?.[0]?.toUpperCase() || 'P'}
+                        </div>
+                        <div className="overflow-hidden">
+                            <p className="truncate text-sm font-bold text-white">
+                                {user?.name || 'Producer'}
+                            </p>
+                            <p className="truncate text-xs text-gray-500">
+                                {user?.email || 'producer@sabotsy.com'}
+                            </p>
+                        </div>
+                    </div>
+                )}
+
+                <button
+                    onClick={() => {
+                        router.post(route('logout'));
+                    }}
+                    className={cn(
+                        'group flex w-full items-center gap-3 rounded-xl text-gray-400 transition-all hover:bg-white/5 hover:text-emerald-400',
+                        isCollapsed ? 'justify-center p-2' : 'px-4 py-3',
+                    )}
+                    title="Logout"
+                >
+                    <LogOut
+                        size={18}
+                        className="flex-shrink-0 transition-transform group-hover:-translate-x-1"
+                    />
+                    {!isCollapsed && (
+                        <span className="text-sm font-bold">Logout</span>
+                    )}
+                </button>
+            </div>
+        </aside>
     );
 }

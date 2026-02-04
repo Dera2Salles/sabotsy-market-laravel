@@ -1,7 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
 import { Textarea } from '@/components/ui/textarea';
 import { Head, useForm } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
@@ -43,16 +42,16 @@ export default function EditProduct({ product, categories }: EditProductProps) {
     };
 
     return (
-        <SidebarProvider>
+        <div className="flex h-screen overflow-hidden">
             <Head title="Edit Product" />
-            <ProducerSidebar variant="inset" />
-            <SidebarInset className="overflow-y-auto">
+            <ProducerSidebar />
+            <div className="flex-1 overflow-y-auto overflow-x-hidden">
                 <ProducerHeader />
                 <div className="flex flex-1 flex-col gap-8 p-6 md:p-8 bg-gray-50/50 dark:bg-zinc-900/50 min-h-screen">
-                    <div className="mx-auto w-full max-w-2xl bg-white dark:bg-zinc-900 rounded-xl shadow-sm border border-gray-100 dark:border-zinc-800 p-8">
+                    <div className="mx-auto w-full max-w-2xl bg-white dark:bg-zinc-900 rounded-2xl shadow-lg border border-zinc-100 dark:border-zinc-800 p-8">
                          <div className="mb-8 flex justify-between items-start">
                             <div>
-                                <h1 className="text-2xl font-bold bg-gradient-to-r from-green-600 to-teal-600 bg-clip-text text-transparent">
+                                <h1 className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
                                     Edit Product
                                 </h1>
                                 <p className="text-gray-500 dark:text-gray-400 mt-2">
@@ -153,7 +152,7 @@ export default function EditProduct({ product, categories }: EditProductProps) {
                                 <Button
                                     type="submit"
                                     disabled={processing}
-                                    className="bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 text-white shadow-lg shadow-green-500/20"
+                                    className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white shadow-lg shadow-emerald-500/20"
                                 >
                                     Update Product
                                 </Button>
@@ -161,7 +160,7 @@ export default function EditProduct({ product, categories }: EditProductProps) {
                         </form>
                     </div>
                 </div>
-            </SidebarInset>
-        </SidebarProvider>
+            </div>
+        </div>
     );
 }

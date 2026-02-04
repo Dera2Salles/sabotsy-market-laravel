@@ -1,4 +1,3 @@
-import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
 import { AppSidebar } from './components/AppSidebar';
 import { MainDashboard } from './components/MainDashboard';
 import { SiteHeader } from './components/SiteHeader';
@@ -14,13 +13,13 @@ interface AdminDashboardProps {
 export const AdminDashboardIndex = ({ stats, recentUsers, products }: AdminDashboardProps) => {
     return (
         <DashboardProvider>
-            <SidebarProvider>
-                <AppSidebar variant="inset" />
-                <SidebarInset className="overflow-y-auto">
+            <div className="flex h-screen overflow-hidden">
+                <AppSidebar />
+                <div className="flex-1 overflow-y-auto overflow-x-hidden">
                     <SiteHeader />
                     <MainDashboard stats={stats} products={products} recentUsers={recentUsers} />
-                </SidebarInset>
-            </SidebarProvider>
+                </div>
+            </div>
         </DashboardProvider>
     );
 };

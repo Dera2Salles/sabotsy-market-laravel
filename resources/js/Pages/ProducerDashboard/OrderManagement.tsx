@@ -1,5 +1,4 @@
 import { DataTable } from '@/components/common/DataTable';
-import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
 import { columns } from './components/OrderColumn';
 import { ProducerHeader } from './components/ProducerHeader';
 import { ProducerSidebar } from './components/ProducerSidebar';
@@ -8,22 +7,27 @@ import { ProducerDashboardProvider } from './context/ProducerDashboardProvider';
 export const OrderManagement = ({ orders }: { orders: any }) => {
     return (
         <ProducerDashboardProvider>
-            <SidebarProvider>
-                <ProducerSidebar variant="inset" />
-                <SidebarInset className="overflow-y-auto">
+            <div className="flex h-screen overflow-hidden">
+                <ProducerSidebar />
+                <div className="flex-1 overflow-y-auto overflow-x-hidden">
                     <ProducerHeader />
-                    <div className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8">
-                        <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
-                            <div className="flex items-center">
-                                <h1 className="text-lg font-semibold md:text-2xl">
+                    <div className="flex min-h-screen flex-1 flex-col gap-8 bg-gray-50/50 p-6 dark:bg-zinc-900/50 md:p-8">
+                        <div className="flex items-center justify-between">
+                            <div>
+                                <h1 className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
                                     Order Management
                                 </h1>
+                                <p className="mt-2 text-gray-500 dark:text-gray-400">
+                                    Track and manage all your product orders
+                                </p>
                             </div>
+                        </div>
+                        <div className="rounded-2xl border border-zinc-100 bg-white p-6 shadow-lg dark:border-zinc-800 dark:bg-zinc-900">
                             <DataTable columns={columns} data={orders} />
-                        </main>
+                        </div>
                     </div>
-                </SidebarInset>
-            </SidebarProvider>
+                </div>
+            </div>
         </ProducerDashboardProvider>
     );
 };

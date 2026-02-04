@@ -1,7 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
 import { Textarea } from '@/components/ui/textarea';
 import { Head, useForm } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
@@ -33,15 +32,15 @@ export default function CreateProduct({ categories }: CreateProductProps) {
     };
 
     return (
-        <SidebarProvider>
+        <div className="flex h-screen overflow-hidden">
             <Head title="Create Product" />
-            <ProducerSidebar variant="inset" />
-            <SidebarInset className="overflow-y-auto">
+            <ProducerSidebar />
+            <div className="flex-1 overflow-y-auto overflow-x-hidden">
                 <ProducerHeader />
                 <div className="flex min-h-screen flex-1 flex-col gap-8 bg-gray-50/50 p-6 dark:bg-zinc-900/50 md:p-8">
-                    <div className="mx-auto w-full max-w-2xl rounded-xl border border-gray-100 bg-white p-8 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
+                    <div className="mx-auto w-full max-w-2xl rounded-2xl border border-zinc-100 bg-white p-8 shadow-lg dark:border-zinc-800 dark:bg-zinc-900">
                         <div className="mb-8">
-                            <h1 className="bg-gradient-to-r from-green-600 to-teal-600 bg-clip-text text-2xl font-bold text-transparent">
+                            <h1 className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-3xl font-bold text-transparent">
                                 Add New Product
                             </h1>
                             <p className="mt-2 text-gray-500 dark:text-gray-400">
@@ -204,7 +203,7 @@ export default function CreateProduct({ categories }: CreateProductProps) {
                                 <Button
                                     type="submit"
                                     disabled={processing}
-                                    className="bg-gradient-to-r from-green-600 to-teal-600 text-white shadow-lg shadow-green-500/20 hover:from-green-700 hover:to-teal-700"
+                                    className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-lg shadow-emerald-500/20 hover:from-emerald-700 hover:to-teal-700"
                                 >
                                     Create Product
                                 </Button>
@@ -212,7 +211,7 @@ export default function CreateProduct({ categories }: CreateProductProps) {
                         </form>
                     </div>
                 </div>
-            </SidebarInset>
-        </SidebarProvider>
+            </div>
+        </div>
     );
 }
