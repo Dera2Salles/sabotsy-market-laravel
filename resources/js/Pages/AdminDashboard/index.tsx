@@ -1,6 +1,5 @@
 import { AppSidebar } from './components/AppSidebar';
 import { MainDashboard } from './components/MainDashboard';
-import { SiteHeader } from './components/SiteHeader';
 import { DashboardProvider } from './context/useDashboardProvider';
 
 // Define interface for props
@@ -16,7 +15,6 @@ export const AdminDashboardIndex = ({ stats, recentUsers, products }: AdminDashb
             <div className="flex h-screen overflow-hidden">
                 <AppSidebar />
                 <div className="flex-1 overflow-y-auto overflow-x-hidden">
-                    <SiteHeader />
                     <MainDashboard stats={stats} products={products} recentUsers={recentUsers} />
                 </div>
             </div>

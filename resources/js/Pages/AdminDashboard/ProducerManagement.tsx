@@ -1,6 +1,5 @@
 import { DataTable } from '@/components/common/DataTable';
 import { AppSidebar } from '@/Pages/AdminDashboard/components/AppSidebar';
-import { SiteHeader } from '@/Pages/AdminDashboard/components/SiteHeader';
 import { columns } from './components/ProducerColumn';
 
 export default function ProducerManagement({ producers }: { producers: any }) {
@@ -8,7 +7,6 @@ export default function ProducerManagement({ producers }: { producers: any }) {
         <div className="flex h-screen overflow-hidden">
             <AppSidebar />
             <div className="flex-1 overflow-y-auto overflow-x-hidden">
-                <SiteHeader />
                 <div className="flex min-h-screen flex-1 flex-col gap-8 bg-gray-50/50 p-6 dark:bg-zinc-900/50 md:p-8">
                     <div className="flex items-center justify-between">
                         <div>

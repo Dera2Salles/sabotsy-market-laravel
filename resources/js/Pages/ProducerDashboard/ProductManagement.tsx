@@ -2,7 +2,6 @@ import { DataTable } from '@/components/common/DataTable';
 import { Button } from '@/components/ui/button';
 import { Link } from '@inertiajs/react';
 import { Plus } from 'lucide-react';
-import { ProducerHeader } from './components/ProducerHeader';
 import { ProducerSidebar } from './components/ProducerSidebar';
 import { columns } from './components/ProductColumn';
 import { ProducerDashboardProvider } from './context/ProducerDashboardProvider';
@@ -13,7 +12,6 @@ export default function ProductManagement({ products }: { products: any }) {
             <div className="flex h-screen overflow-hidden">
                 <ProducerSidebar />
                 <div className="flex-1 overflow-y-auto overflow-x-hidden">
-                    <ProducerHeader />
                     <div className="flex min-h-screen flex-1 flex-col gap-8 bg-gray-50/50 p-6 dark:bg-zinc-900/50 md:p-8">
                         <div className="flex items-center justify-between">
                             <div>
