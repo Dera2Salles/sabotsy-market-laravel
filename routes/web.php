@@ -5,6 +5,7 @@ use App\Http\Controllers\ProducerDashboardController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
 Route::get('/', [ProductsController::class, 'index']);
 Route::post('/product', [ProductsController::class, 'store']);
@@ -28,10 +29,11 @@ Route::middleware(['auth', 'verified', 'admin'])->prefix('admin')->name('admin.'
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
     Route::get('/users', [AdminDashboardController::class, 'users'])->name('users');
     Route::get('/producers', [AdminDashboardController::class, 'producers'])->name('producers');
+    Route::put('/producers/{user}/toggle-approval', [AdminDashboardController::class, 'toggleProducerApproval'])->name('producers.toggleApproval');
 });
 
 // Producer routes
-Route::middleware(['auth', 'verified', 'producer'])->prefix('producer')->name('producer.')->group(function () {
+Route::middleware(['auth', 'verified', 'producer', 'approved_producer'])->prefix('producer')->name('producer.')->group(function () {
     Route::get('/dashboard', [ProducerDashboardController::class, 'index'])->name('dashboard');
     Route::get('/products', [ProducerDashboardController::class, 'products'])->name('products');
     Route::get('/products/create', [ProducerDashboardController::class, 'create'])->name('products.create');
@@ -40,8 +42,15 @@ Route::middleware(['auth', 'verified', 'producer'])->prefix('producer')->name('p
     Route::put('/products/{product}', [ProducerDashboardController::class, 'update'])->name('products.update');
     Route::delete('/products/{product}', [ProducerDashboardController::class, 'destroy'])->name('products.destroy');
     Route::get('/orders', [ProducerDashboardController::class, 'orders'])->name('orders');
+    Route::put('/orders/{order}/status', [ProducerDashboardController::class, 'updateOrderStatus'])->name('orders.updateStatus');
     Route::get('/productsList', [ProducerDashboardController::class, 'show'])->name('productsList');
+});
 
+// Pending approval route (outside the approved_producer group)
+Route::middleware(['auth', 'verified', 'producer'])->prefix('producer')->name('producer.')->group(function () {
+    Route::get('/pending-approval', function () {
+        return Inertia::render('ProducerDashboard/PendingApproval');
+    })->name('pending-approval');
 });
 
 Route::middleware('auth')->group(function () {

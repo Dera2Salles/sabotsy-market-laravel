@@ -3,7 +3,7 @@ import { AppSidebar } from '@/Pages/AdminDashboard/components/AppSidebar';
 import { SiteHeader } from '@/Pages/AdminDashboard/components/SiteHeader';
 import { columns } from './components/UserColumn';
 
-export const UserManagement = ({ users }: { users: any }) => {
+export default function UserManagement({ users }: { users: any }) {
     return (
         <div className="flex h-screen overflow-hidden">
             <AppSidebar />
@@ -27,6 +27,4 @@ export const UserManagement = ({ users }: { users: any }) => {
             </div>
         </div>
     );
-};
-
-export default UserManagement;
+}

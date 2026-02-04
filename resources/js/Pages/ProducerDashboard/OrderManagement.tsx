@@ -1,16 +1,14 @@
 import { DataTable } from '@/components/common/DataTable';
 import { columns } from './components/OrderColumn';
-import { ProducerHeader } from './components/ProducerHeader';
 import { ProducerSidebar } from './components/ProducerSidebar';
 import { ProducerDashboardProvider } from './context/ProducerDashboardProvider';
 
-export const OrderManagement = ({ orders }: { orders: any }) => {
+export default function OrderManagement({ orders }: { orders: any }) {
     return (
         <ProducerDashboardProvider>
             <div className="flex h-screen overflow-hidden">
                 <ProducerSidebar />
                 <div className="flex-1 overflow-y-auto overflow-x-hidden">
-                    <ProducerHeader />
                     <div className="flex min-h-screen flex-1 flex-col gap-8 bg-gray-50/50 p-6 dark:bg-zinc-900/50 md:p-8">
                         <div className="flex items-center justify-between">
                             <div>
@@ -30,6 +28,4 @@ export const OrderManagement = ({ orders }: { orders: any }) => {
             </div>
         </ProducerDashboardProvider>
     );
-};
-
-export default OrderManagement;
+}

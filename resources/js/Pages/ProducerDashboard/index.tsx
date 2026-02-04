@@ -1,4 +1,3 @@
-import { ProducerHeader } from './components/ProducerHeader';
 import { ProducerMainDashboard } from './components/ProducerMainDashboard';
 import { ProducerSidebar } from './components/ProducerSidebar';
 import { ProducerDashboardProvider } from './context/ProducerDashboardProvider';
@@ -18,7 +17,6 @@ export const ProducerDashboardPage = ({
             <div className="flex h-screen overflow-hidden">
                 <ProducerSidebar />
                 <div className="flex-1 overflow-y-auto overflow-x-hidden">
-                    <ProducerHeader />
                     <ProducerMainDashboard stats={stats} products={products} />
                 </div>
             </div>

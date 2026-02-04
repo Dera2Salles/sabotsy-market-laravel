@@ -21,6 +21,7 @@ class ProducerDashboardController extends Controller
         $products = Product::where('user_id', $user->id)->paginate(10);
         $products->getCollection()->transform(function ($product) {
             $product->image = '/storage/' . $product->image;
+            $product->created_at = $product->created_at->toIso8601String();
             return $product;
         });
 
@@ -58,6 +59,7 @@ class ProducerDashboardController extends Controller
 
         $products->getCollection()->transform(function ($product) {
             $product->image = '/storage/' . $product->image;
+            $product->created_at = $product->created_at->toIso8601String();
             return $product;
         });
 
@@ -185,9 +187,38 @@ class ProducerDashboardController extends Controller
             $query->where('user_id', $user->id);
         })->with('product')->latest()->paginate(15);
 
+        // Transform product images to include storage path
+        $orders->getCollection()->transform(function ($order) {
+            if ($order->product && $order->product->image) {
+                $order->product->image = '/storage/' . $order->product->image;
+            }
+            return $order;
+        });
+
         return Inertia::render('ProducerDashboard/OrderManagement', [
             'orders' => $orders,
         ]);
+    }
+
+    /**
+     * Update order status.
+     */
+    public function updateOrderStatus(Request $request, Order $order)
+    {
+        // Verify the order belongs to a product owned by the authenticated producer
+        if ($order->product->user_id !== Auth::id()) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        $validated = $request->validate([
+            'status' => 'required|in:pending,processing,shipped,delivered,cancelled',
+        ]);
+
+        $order->update([
+            'status' => $validated['status'],
+        ]);
+
+        return redirect()->back()->with('success', 'Order status updated successfully.');
     }
 
     public function show()
@@ -196,6 +227,7 @@ class ProducerDashboardController extends Controller
         $products = Product::where('user_id', $user->id)->paginate(10);
         $products->getCollection()->transform(function ($product) {
             $product->image = '/storage/' . $product->image;
+            $product->created_at = $product->created_at->toIso8601String();
             return $product;
         });
 

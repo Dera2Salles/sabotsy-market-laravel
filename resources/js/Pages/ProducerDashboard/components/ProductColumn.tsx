@@ -11,14 +11,31 @@ import {
 import { router } from '@inertiajs/react';
 import { ColumnDef } from '@tanstack/react-table';
 import { ArrowUpDown, Edit, MoreHorizontal, Trash2 } from 'lucide-react';
+import toast from 'react-hot-toast';
 
 export type Product = {
     id: string;
     product_name: string;
     unit_price: number;
-    unit_stock: number; // Changed from status to unit_stock for logic, or keep status if exists
+    unit_stock: number;
     image: string;
     product_description: string;
+    created_at: string;
+};
+
+// Helper function to calculate product age
+const getProductAge = (createdAt: string) => {
+    const now = new Date();
+    const created = new Date(createdAt);
+    const diffMs = now.getTime() - created.getTime();
+    const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+    
+    if (diffDays === 0) return 'Today';
+    if (diffDays === 1) return '1 day ago';
+    if (diffDays < 7) return `${diffDays} days ago`;
+    if (diffDays < 30) return `${Math.floor(diffDays / 7)} weeks ago`;
+    if (diffDays < 365) return `${Math.floor(diffDays / 30)} months ago`;
+    return `${Math.floor(diffDays / 365)} years ago`;
 };
 
 // Formatting currency
@@ -108,7 +125,14 @@ export const columns: ColumnDef<Product>[] = [
                         <DropdownMenuItem
                              onClick={() => {
                                 if (confirm('Are you sure you want to delete this product?')) {
-                                    router.delete(route('producer.products.destroy', product.id))
+                                    router.delete(route('producer.products.destroy', product.id), {
+                                        onSuccess: () => {
+                                            toast.success('Product deleted successfully!');
+                                        },
+                                        onError: () => {
+                                            toast.error('Failed to delete product.');
+                                        },
+                                    });
                                 }
                             }}
                             className="text-red-600 focus:text-red-700 cursor-pointer"

@@ -56,14 +56,14 @@ export const ProductListOnCart = () => {
                             <div className="flex items-center justify-between">
                                 <div className="space-y-1">
                                     <CardTitle className="flex items-center gap-3 text-3xl font-black text-gray-900 dark:text-white">
-                                        <div className="rounded-2xl bg-green-600/10 p-3 dark:bg-green-500/10">
-                                            <MdShoppingCart className="font-bold text-green-600 dark:text-green-400" />
+                                        <div className="rounded-2xl bg-emerald-600/10 p-3 dark:bg-emerald-500/10">
+                                            <MdShoppingCart className="font-bold text-emerald-600 dark:text-emerald-400" />
                                         </div>
                                         Your Cart
                                     </CardTitle>
                                     <p className="font-medium text-gray-500 dark:text-gray-400">
                                         You have{' '}
-                                        <span className="font-bold text-green-600 dark:text-green-400">
+                                        <span className="font-bold text-emerald-600 dark:text-emerald-400">
                                             {totalItems}
                                         </span>{' '}
                                         items in your selection
@@ -121,7 +121,7 @@ export const ProductListOnCart = () => {
                                     className="flex h-[450px] flex-col items-center justify-center space-y-4 text-center"
                                 >
                                     <div className="relative">
-                                        <div className="absolute inset-0 rounded-full bg-green-500/20 blur-3xl" />
+                                        <div className="absolute inset-0 rounded-full bg-emerald-500/20 blur-3xl" />
                                         <MdShoppingCart className="relative animate-pulse text-9xl text-gray-200 dark:text-zinc-800" />
                                     </div>
                                     <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
@@ -143,14 +143,14 @@ export const ProductListOnCart = () => {
                                             <p className="text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">
                                                 Total Amount
                                             </p>
-                                            <p className="bg-gradient-to-r from-green-600 to-teal-600 bg-clip-text text-4xl font-black text-transparent">
+                                            <p className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-4xl font-black text-transparent">
                                                 {totalPrice} MGA
                                             </p>
                                         </div>
 
                                         <Button
                                             onClick={bloc.confirmOrder}
-                                            className="group relative flex w-full items-center justify-center gap-3 rounded-[1.5rem] bg-gradient-to-r from-green-600 to-teal-600 px-10 py-8 text-xl font-black text-white shadow-[0_20px_40px_-12px_rgba(5,150,105,0.4)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_48px_-12px_rgba(5,150,105,0.6)] active:scale-95 sm:w-auto"
+                                            className="group relative flex w-full items-center justify-center gap-3 rounded-[1.5rem] bg-gradient-to-r from-emerald-600 to-teal-600 px-10 py-8 text-xl font-black text-white shadow-[0_20px_40px_-12px_rgba(16,185,129,0.4)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_48px_-12px_rgba(16,185,129,0.6)] active:scale-95 sm:w-auto"
                                         >
                                             <MdPayment className="text-2xl group-hover:animate-bounce" />
                                             <span>Purchase</span>

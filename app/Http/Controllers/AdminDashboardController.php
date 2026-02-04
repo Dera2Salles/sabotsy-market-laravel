@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class AdminDashboardController extends Controller
@@ -27,6 +28,7 @@ class AdminDashboardController extends Controller
         $products = Product::with('user')->paginate(10);
         $products->getCollection()->transform(function ($product) {
             $product->image = '/storage/' . $product->image;
+            $product->created_at = $product->created_at->toIso8601String();
             return $product;
         });
 
@@ -68,5 +70,26 @@ class AdminDashboardController extends Controller
         return Inertia::render('AdminDashboard/ProducerManagement', [
             'producers' => $producers,
         ]);
+    }
+
+    /**
+     * Toggle producer approval status.
+     */
+    public function toggleProducerApproval(Request $request, User $user)
+    {
+        // Ensure the user is a producer
+        if (!$user->isProducer()) {
+            abort(403, 'User is not a producer.');
+        }
+
+        $validated = $request->validate([
+            'is_approved' => 'required|boolean',
+        ]);
+
+        $user->update([
+            'is_approved' => $validated['is_approved'],
+        ]);
+
+        return redirect()->back()->with('success', 'Producer approval status updated successfully.');
     }
 }

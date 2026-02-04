@@ -4,6 +4,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Head, useForm } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
+import toast from 'react-hot-toast';
 import { ProducerHeader } from './components/ProducerHeader';
 import { ProducerSidebar } from './components/ProducerSidebar';
 
@@ -28,7 +29,14 @@ export default function CreateProduct({ categories }: CreateProductProps) {
 
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
-        post(route('producer.products.store'));
+        post(route('producer.products.store'), {
+            onSuccess: () => {
+                toast.success('Product created successfully!');
+            },
+            onError: () => {
+                toast.error('Failed to create product. Please check the form.');
+            },
+        });
     };
 
     return (

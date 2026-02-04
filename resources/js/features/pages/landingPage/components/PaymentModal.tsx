@@ -46,7 +46,7 @@ export const PaymentModal = ({
                         onClick={(e) => e.stopPropagation()}
                     >
                         <Card className="overflow-hidden border-0 shadow-2xl overflow-y-auto max-h-[90vh]">
-                            <CardHeader className="bg-gradient-to-r from-green-600 to-teal-600 text-white p-6">
+                            <CardHeader className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white p-6">
                                 <div className="flex items-center justify-between">
                                     <CardTitle className="text-xl font-bold flex items-center gap-2">
                                         <ShieldCheck className="w-6 h-6" />
@@ -59,7 +59,7 @@ export const PaymentModal = ({
                                         <MdCancel className="text-2xl" />
                                     </button>
                                 </div>
-                                <CardDescription className="text-green-50">
+                                <CardDescription className="text-emerald-50">
                                     Complete your purchase of {totalAmount} MGA
                                 </CardDescription>
                             </CardHeader>
@@ -97,9 +97,9 @@ export const PaymentModal = ({
                                         />
                                     </div>
                                 </div>
-                                <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-xl flex gap-3 items-start border border-blue-100 dark:border-blue-800">
-                                    <ShieldCheck className="w-5 h-5 text-blue-600 mt-0.5" />
-                                    <p className="text-sm text-blue-800 dark:text-blue-300">
+                                <div className="bg-emerald-50 dark:bg-emerald-900/20 p-4 rounded-xl flex gap-3 items-start border border-emerald-100 dark:border-emerald-800">
+                                    <ShieldCheck className="w-5 h-5 text-emerald-600 mt-0.5" />
+                                    <p className="text-sm text-emerald-800 dark:text-emerald-300">
                                         This is a simulated secure payment for Sabotsy Market. No actual funds will be deducted.
                                     </p>
                                 </div>
@@ -108,7 +108,7 @@ export const PaymentModal = ({
                                 <Button
                                     onClick={onConfirm}
                                     disabled={isProcessing}
-                                    className="w-full bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 h-12 text-lg font-bold shadow-lg shadow-green-500/20"
+                                    className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 h-12 text-lg font-bold shadow-lg shadow-emerald-500/20"
                                 >
                                     {isProcessing ? (
                                         <>
