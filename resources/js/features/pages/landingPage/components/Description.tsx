@@ -13,14 +13,14 @@ export const Description = forwardRef<HTMLDivElement>((_, ref) => {
       </div>
       <div
         ref={ref}
-        className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-4"
+        className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-6 md:px-8"
       >
-        <h1 className="text-5xl md:text-7xl font-extrabold mb-4 animate-fade-in-down">
-          We bring the store <br /> to your door
+        <h1 className="text-4xl md:text-7xl font-extrabold mb-4 animate-fade-in-down leading-tight">
+          We bring the store <br className="hidden md:block" /> to your door
         </h1>
-        <p className="text-lg md:text-xl max-w-2xl mb-8 animate-fade-in-up">
+        <p className="text-lg md:text-xl max-w-2xl mb-8 animate-fade-in-up px-2">
           Get organic produce and sustainably sourced groceries delivered at up
-          to 4% off grocery.
+          to 40% off grocery.
         </p>
         <Link
           to="productList"

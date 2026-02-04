@@ -24,21 +24,19 @@ export const NavBar = () => {
                 }`}
             >
                 <div className="container mx-auto px-4">
-                    <div className="flex items-center justify-between py-4">
+                    <div className="flex items-center justify-between py-3 md:py-4">
                         <div className="flex items-center gap-2">
-                            <h1 className="text-2xl font-bold text-white">
+                            <h1 className="text-xl font-bold text-white md:text-2xl">
                                 <span className="text-yellow-400">Sabotsy</span>{' '}
-                                Market
+                                <span className="hidden sm:inline">Market</span>
                             </h1>
                         </div>
-                        <div className="flex items-center gap-4">
-                            <div className="hidden items-center gap-2 font-semibold text-white md:flex">
-                                <MdFlashOn className="text-2xl text-yellow-400" />
-                                <p>
-                                    Order now and get it within{' '}
-                                    <span className="text-yellow-400">
-                                        15 min!
-                                    </span>
+                        <div className="flex items-center gap-2 md:gap-4">
+                            <div className="flex items-center gap-1 font-semibold text-white md:gap-2">
+                                <MdFlashOn className="text-xl text-yellow-400 md:text-2xl" />
+                                <p className="text-xs md:text-base">
+                                    <span className="hidden lg:inline">Order now and get it within{' '}</span>
+                                    <span className="text-yellow-400">15 min!</span>
                                 </p>
                             </div>
 
@@ -58,18 +56,18 @@ export const NavBar = () => {
                                     <Button
                                         size="icon"
                                         variant="outline"
-                                        className="size-10 cursor-pointer rounded-full bg-white text-green-700 transition-all duration-300 hover:bg-gray-100 dark:bg-white"
+                                        className="size-9 cursor-pointer rounded-full bg-white text-green-700 transition-all duration-300 hover:bg-gray-100 dark:bg-white md:size-10"
                                     >
-                                        <MdPerson2 className="text-2xl" />
+                                        <MdPerson2 className="text-xl md:text-2xl" />
                                     </Button>
                                 </Link>
                             )}
 
                             <button
-                                className="cursor-pointer px-5 text-white"
+                                className="cursor-pointer px-2 text-white md:px-5"
                                 onClick={toggleTheme}
                             >
-                                {isDark ? <Sun /> : <Moon />}
+                                {isDark ? <Sun size={20} className="md:size-6" /> : <Moon size={20} className="md:size-6" />}
                             </button>
                         </div>
                     </div>

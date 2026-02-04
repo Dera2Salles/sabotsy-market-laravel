@@ -22,16 +22,16 @@ export const ProductCardList = () => {
             id="productList"
         >
             <div className="container mx-auto px-4">
-                <div className="mb-12 text-center">
-                    <h2 className="text-4xl font-extrabold text-green-800 transition-all duration-500 dark:text-amber-100">
+                <div className="mb-10 text-center md:mb-16">
+                    <h2 className="text-3xl font-extrabold text-green-800 transition-all duration-500 dark:text-amber-100 md:text-5xl">
                         Our Fresh Products
                     </h2>
-                    <p className="mt-2 text-gray-600 transition-all duration-500 dark:text-gray-300">
+                    <p className="mx-auto mt-4 max-w-2xl text-base text-gray-600 transition-all duration-500 dark:text-gray-300 md:text-lg">
                         Discover a variety of fresh and organic products from
                         local farmers.
                     </p>
                 </div>
-                <div className="mb-12 flex flex-col items-center justify-between gap-8 md:flex-row">
+                <div className="mb-12 flex flex-col items-center justify-between gap-6 md:flex-row md:gap-8">
                     {/* Premium Search Bar */}
                     <div className="relative w-full md:w-5/12">
                         <div className="group relative">
@@ -40,21 +40,21 @@ export const ProductCardList = () => {
                                 <MdSearch className="ml-4 h-6 w-6 text-gray-400 group-focus-within:text-green-500" />
                                 <input
                                     onChange={(e) => bloc.setSearch(e.target.value)}
-                                    placeholder="Search for fresh food, organic fruits..."
-                                    className="h-14 w-full border-none bg-transparent px-4 text-base font-medium placeholder-gray-400 focus:outline-none focus:ring-0 dark:text-white"
+                                    placeholder="Search for fresh food..."
+                                    className="h-12 w-full border-none bg-transparent px-4 text-sm font-medium placeholder-gray-400 focus:outline-none focus:ring-0 dark:text-white md:h-14 md:text-base"
                                 />
                             </div>
                         </div>
                     </div>
 
                     {/* Modern Category Chips */}
-                    <div className="flex w-full items-center gap-2 overflow-x-auto pb-4 md:w-auto md:pb-0 scrollbar-hide">
-                        <div className="flex gap-2">
+                    <div className="scrollbar-hide flex w-full items-center gap-2 overflow-x-auto pb-2 md:w-auto md:pb-0">
+                        <div className="flex w-full gap-2 md:w-auto">
                             <motion.button
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                                 onClick={() => bloc.setFilterCategory('All')}
-                                className={`relative rounded-xl px-6 py-3 text-sm font-bold transition-all duration-300 whitespace-nowrap ${
+                                className={`relative rounded-xl px-5 py-2.5 text-xs font-bold transition-all duration-300 whitespace-nowrap md:px-6 md:py-3 md:text-sm ${
                                     bloc.filterCategory === 'All'
                                         ? 'bg-green-600 text-white shadow-lg shadow-green-500/30'
                                         : 'bg-white text-gray-600 hover:bg-gray-100 dark:bg-zinc-900/50 dark:text-gray-400 dark:hover:bg-zinc-800'
@@ -68,7 +68,7 @@ export const ProductCardList = () => {
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
                                     onClick={() => bloc.setFilterCategory(item.name)}
-                                    className={`rounded-xl px-6 py-3 text-sm font-bold transition-all duration-300 whitespace-nowrap ${
+                                    className={`rounded-xl px-5 py-2.5 text-xs font-bold transition-all duration-300 whitespace-nowrap md:px-6 md:py-3 md:text-sm ${
                                         bloc.filterCategory === item.name
                                             ? 'bg-green-600 text-white shadow-lg shadow-green-500/30'
                                             : 'bg-white text-gray-600 hover:bg-gray-100 dark:bg-zinc-900/50 dark:text-gray-400 dark:hover:bg-zinc-800'
